@@ -1,0 +1,73 @@
+<nav class="navbar navbar-dark bg-dark">
+  <!-- Navbar content -->
+   <h1 class="text-white bg-dark"> Sesion Iniciada</h1>
+
+
+   <!--<%= link_to 'Usuario: #{@admin.nombre} #{@admin.apellido}', '/administrators/perfil' %>  -->
+
+   <!--<div align="right"> <a href="" class="btn btn-secondary">Administrador </a>
+    </div>-->
+ 
+</nav>
+
+<nav class="navbar navbar-dark bg-dark">
+
+<a class="navbar-brand" href="#">Administrador</a>
+    <p class="text-light bg-dark">Propiedades <span class="sr-only">(current)</span></p> <!-- Aqui seccion actual -->
+
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="administrators/sesionIniciada/1">Inicio </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/residences">Propiedades <span class="sr-only">(current)</span></a>  <!-- Aqui seccion actual -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Buscar</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="#">Reservas</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="#">Clientes</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="#">Ayuda</a>
+      </li>
+    </ul>
+  </div>
+  </nav>
+  <br>
+
+
+  <div align="right">
+<a href="/residences/new" class="btn btn-outline-dark">Agregar nueva Propiedad</a> </div>
+
+
+
+  <div class="card-group">
+    <% Residence.all.each do |residence|%>
+    <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="card">
+
+        <%= image_tag residence.urlImag ,size: "500x500", class: "card-img-top" %>
+    <div class="card-body">
+
+      <h5><a href=<%=residence_path(residence)%> class="card-title"><%=residence.nombre%></a></h5>
+      <p class="card-text"><%=residence.descripcion%></p>
+      <p class="card-text"><small class="text-muted"><%=residence.provincia%>, <%=residence.localidad%></small></p>
+
+       <%= link_to 'Modificar', edit_residence_path(residence), class: 'btn btn-primary'%>
+
+       <%= link_to 'Eliminar', residence, method: :delete, class: 'btn btn-outline-danger', data:{ confirm: '¿Estás seguro que querés eliminar esta residencia?'}%>
+    </div>
+  </div>
+
+</div>
+  <%end%>
+</div>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title> HSH- Iniciar Sesión</title>
+</head>
+
+<body>
+<nav class="navbar navbar-dark bg-dark">
+  <!-- Navbar content -->
+   <h1 class="text-white bg-dark" align="left"> Iniciar Sesión</h1>
+   <div align="right">
+              <%= link_to "/", class: 'navbar-brand' do %>
+              <%= image_tag "HSH-Logo.svg",size:"300x200",title: "Logo", class: "image" %> 
+              <% end %>
+
+   </div>
+    </nav>
+       <br>
+  <div class="card text-center">
+  <div class="card-header">
+    Para disfrutar de nuestros servicios, inicie sesión:
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <table class="table">
+      
+        <tr>
+             <center> <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+       <center>  <div class="navbar-header">
+          
+          
+          <%= link_to root_path, class: 'navbar-brand' do %>
+            <%= image_tag "HSH-Text.svg", title: "HSH", class: "image" %>
+              <% end %>
+              <br>
+        </div>
+         </center>
+       
+      </div>
+       </div> </center>    
+        </tr>
+        <tr>
+          <%=form_tag '/validarLogIn', method: :get do%>
+                  <div class="form-group">
+                  <div align="left"><%= label_tag :nombreDeUsuario, 'Ingrese su email'%></div>
+
+                  <%= text_field_tag :nombreDeUsuario, params[:nombreDeUsuario],class: "form-control",placeholder: "ejemplo@hsh.com", required: true%>
+
+                  <small align="left"> <%= label_tag :emailHelp, 'Como usuario administrador ingrese su nombre de usuario.', class: 'form-text text-muted' %> </small>
+                  <br>
+
+                  <div align="left"> <%= label_tag :clave,'Ingrese su contraseña' %></div>
+                  <%= password_field_tag :clave, params[:clave], class: "form-control", placeholder: "contraseña", required: true%>
+                  <br>
+                  <br>
+                  <center><%= submit_tag 'Ingresar', class: 'btn btn-primary btn-lg'%> </center>
+                  </div>
+
+                  
+
+          <%end %>          
+      </tr>
+    </table>
+
+  </div>
+
+
+
+  <div class="card-footer text-muted">
+    
+  </div>
+</div>
+  
+
+<br>
+    <br>
+    <nav class="navbar navbar-dark bg-dark">
+  <!-- Navbar content -->
+
+   <center>
+    <%= link_to "Contacto", "/contacto"%> - 
+    <%= link_to "Ayuda", "/help"%> - 
+    <%= link_to "Sobre Nosotros", "/about"%></center>
+    <br>
+    <br>
+    <CENTER> <p class="text-secondary"> - Cadena de Hoteles Home Switch Home - 2018 -</p></CENTER>
+ </nav>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

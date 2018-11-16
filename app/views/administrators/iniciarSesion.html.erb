@@ -1,0 +1,40 @@
+
+<nav class="navbar navbar-dark bg-dark">
+  <!-- Navbar content -->
+   <h1 class="text-white bg-dark" align="left"> Iniciar Sesión</h1>
+    </nav>
+       <br>
+  <div class="card text-center">
+  <div class="card-header">
+    Para disfrutar de nuestros servicios, inicie sesión:
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+          <%=form_tag '/validarLogIn', method: :get do%>
+                  <div class="form-group">
+                  <div align="left"><%= label_tag :nombreDeUsuario, 'Ingrese su email'%></div>
+
+                  <%= text_field_tag :nombreDeUsuario, params[:nombreDeUsuario],class: "form-control",placeholder: "ejemplo@hsh.com", required: true%>
+
+                  <div align="left"><small align="left"> <%= label_tag :emailHelp, 'Como usuario administrador ingrese su nombre de usuario.', class: 'form-text text-muted' %> </small>
+                  </div>
+                  <br>
+
+                  <div align="left"> <%= label_tag :clave,'Ingrese su contraseña' %></div>
+                  <%= password_field_tag :clave, params[:clave], class: "form-control", placeholder: "contraseña", required: true%>
+                  <br>
+                  <br>
+                  <center><%= submit_tag 'Ingresar', class: 'btn btn-primary btn-lg'%> </center>
+                  </div>
+
+                  
+
+          <%end %>          
+
+
+  </div>
+</div>
+
+
+
+
