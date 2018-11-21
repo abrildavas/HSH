@@ -1,5 +1,45 @@
 Rails.application.routes.draw do
 
+  get 'weeks/index'
+
+  get 'weeks/show'
+
+  get 'weeks/delete'
+
+  get 'weeks/new'
+
+  get 'weeks/create'
+
+  get 'reservations/index'
+
+  get 'reservations/show'
+
+  get 'reservations/delete'
+
+  get 'reservations/create'
+
+  get 'clients/delete'
+
+  get 'bids/index'
+
+  get 'bids/show'
+
+  get 'bids/delete'
+
+  get 'bids/create'
+
+  get 'bids/new'
+
+  get 'auctions/index'
+
+  get 'auctions/show'
+
+  get 'auctions/create'
+
+  get 'auctions/new'
+
+  get 'auctions/delete'
+
   resources :administrators
   resources :residences
 
