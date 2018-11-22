@@ -19,7 +19,6 @@ class ResidencesController < ApplicationController
   def edit
     @residence=Residence.find(params[:id])
 
-
   end
 
 

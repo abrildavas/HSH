@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181113152640) do
+ActiveRecord::Schema.define(version: 20181122170258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.float "precioActual"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "residence_id"
   end
 
   create_table "bids", force: :cascade do |t|
@@ -36,6 +37,8 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.time "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "client_id"
+    t.integer "auction_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -51,15 +54,6 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.string "direccion"
-    t.string "localidad"
-    t.string "provincia"
-    t.string "pais"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "reservations", force: :cascade do |t|
     t.float "precio"
     t.date "fecha"
@@ -67,6 +61,7 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.datetime "updated_at", null: false
     t.date "fechaInicio"
     t.date "fechaFin"
+    t.integer "client_id"
   end
 
   create_table "residences", force: :cascade do |t|
@@ -89,6 +84,7 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.string "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "residence_id"
   end
 
 end
