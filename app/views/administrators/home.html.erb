@@ -8,8 +8,19 @@
 
 <nav class="navbar navbar-dark bg-dark">
   <!-- Navbar content -->
-   <h1 class="text-white bg-dark"> Bienvenido</h1>
-   <div align="right"> <a href="/iniciarSesion" class="btn btn-light">Iniciar Sesión</a>
+  <br>
+  <br>
+
+   <h1 class="text-white bg-dark" align="right"> Cadena de Hoteles</h1>
+
+
+   <div align="right">
+ 
+   
+    <%= link_to 'Registrarse',new_client_registration_path,class:"btn btn-info" %>
+
+    <%= link_to 'Iniciar Sesión',new_client_session_path,class:"btn btn-primary" %>
+ 
 		</div>
  
 </nav>
@@ -19,8 +30,9 @@
       <div class="container">
         <div class="navbar-header">
           
-          <%= link_to root_path, class: 'navbar-brand' do %>
+          <center><%= link_to root_path, class: 'navbar-brand' do %>
             <%= image_tag "HSH-Complete.svg", title: "Logo", class: "image" %>
+          </center>
               <% end %>
         </div>
    			
