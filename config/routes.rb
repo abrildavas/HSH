@@ -42,21 +42,12 @@ Rails.application.routes.draw do
 
   resources :administrators
   resources :residences
+  resources :clients
 
 
   root 'administrators#home'
 
-  get 'clients/index'
 
-  get 'clients/show'
-
-  get 'clients/new'
-
-  get 'clients/edit'
-
-  get 'clients/create'
-
-  get 'clients/destroy'
 
   get 'administrators/sesionIniciada/:id', to: 'administrators#sesionIniciada'
 

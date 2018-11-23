@@ -10,11 +10,13 @@ class BidsController < ApplicationController
   end
 
   def delete
+
+    
   end
 
   def create
 
-    @bid=Bid.new(params.require(:bid).permit(:valor ,:fecha))
+    @bid=Bid.new(params.require(:bid).permit(:valor ,:fecha, :client_id,:auction_id))
 
     if @bid.save 
       redirect_to "#", notice: "se agregó la nueva oferta"

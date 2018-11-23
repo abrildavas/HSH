@@ -11,7 +11,7 @@ class AuctionsController < ApplicationController
 
   def create
 
-    @auction=Auction.new(params.require(:auction).permit(:precioBase ,:precioActual))
+    @auction=Auction.new(params.require(:auction).permit(:precioBase ,:precioActual,:residence_id))
 
     if @auction.save 
       redirect_to "#", notice: "-"
