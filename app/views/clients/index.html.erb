@@ -55,7 +55,7 @@
       <% Client.all.each do |client|%>
           <div class="shadow p-3 mb-5 bg-white rounded">
 
-      <a href=<%= client_path(client)%> class="btn btn-outline-dark btn-lg btn-block"> <%= client.nombre %>, <%= client.apellido %>. DNI: <%= client.dni %></a> </div>
+      <a href=<%= client_path(client)%> class="btn btn-outline-dark btn-lg btn-block"> <%= client.apellido %>, <%= client.nombre %>. DNI: <%= client.dni %></a> </div>
           </div>
 
       <%end%>
