@@ -20,7 +20,15 @@ class ResidencesController < ApplicationController
     @residence=Residence.find(params[:id])
 
   end
-
+  def dates
+    fecha = Date.parse(params[:fechaInicio])
+    if (fecha != fecha.monday) 
+       flash[:danger] = 'Ingrese una fecha que empieze el lunes' 
+    else 
+        flash[:success] = 'El checkeo funciona'
+    end
+    redirect_back(fallback_location: root_path)
+  end
 
   def create
   	@residence=Residence.new(params.require(:residence).permit(:nombre ,:descripcion, :urlImag, :precio, :estado,:pais,:provincia,:localidad, :direccion))

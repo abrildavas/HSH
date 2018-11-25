@@ -1,4 +1,4 @@
 class Auction < ApplicationRecord
-	belongs_to :residence
+	belongs_to :weeks
 	has_many :bids, dependent: :destroy
 end

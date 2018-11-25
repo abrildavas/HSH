@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
   root 'administrators#home'
 
-
+  get 'residences/:id/dates', to: 'residences#dates', as:'residence_dates' 
 
   get 'administrators/sesionIniciada/:id', to: 'administrators#sesionIniciada'
 

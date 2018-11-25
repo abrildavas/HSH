@@ -9,8 +9,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-       <link rel="stylesheet" href="/static/css/bootstrap.css">
-       <link rel="stylesheet" href="/static/css/bootstrap-theme.css">
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.css">
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap-theme.css">
 
   </head>
 
@@ -20,6 +20,12 @@
   
   <% if flash[:notice] %>
     <div class="alert alert-info"> <%= flash[:notice] %> </div>
+  <% end %>
+  <% if flash[:success] %>
+    <div class="alert alert-success"> <%= flash[:success] %> </div>
+  <% end %>
+    <% if flash[:danger] %>
+    <div class="alert alert-danger"> <%= flash[:danger] %> </div>
   <% end %>
 
 <!--Desde aquí-->
