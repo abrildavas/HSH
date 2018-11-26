@@ -55,17 +55,29 @@
 
     
     <div class="card-body">
-      <h5><class="card-title">  <%=@client.apellido %>, <%= @client.nombre %>.  DNI: <%= @client.dni %>.  Fecha de Nacimiento:<%= @client.fechaNac%></h5>
-         <h3>Estado de Cuenta: <%=@client.estado%></h3>
-      <p class="card-text">mail: <%=@client.mail%></p>
-      <p class="card-text"><h4 class="text-muted"> Tarjeta de Crédito:<%=@client.marcaTarj%>, número: <%=@client.numTarj%>, fecha de Vencimiento: <%=@client.fechaVencTarj%>. <br> fecha en que se registró en el sitio: <%=@client.fechaReg%>. <br> Créditos disponibles: <%=@client.creditos%></h4></p>
+      <h3><class="card-title"> <%=@client.apellido %>, <%= @client.nombre %></h3>. <br> <h5> DNI: <%= @client.dni %>.  <br>Fecha de Nacimiento:<%= @client.fechaNac%></h5>
+         <h4>Estado de Cuenta: <%=@client.estado%></h4>
+      <h4 class="card-text">Mail: <%=@client.mail%></h4>
+      <p class="card-text"><h4 class="text-muted"> Tarjeta de Crédito:<%=@client.marcaTarj%> <br>número: <%=@client.numTarj%><br> Fecha de Vencimiento: <%=@client.fechaVencTarj%>. <br> <br> fecha en que se registró en el sitio: <%=@client.fechaReg%>. <br> <br>Créditos disponibles: <%=@client.creditos%></h4></p>
 
     </div>
 
-   <% if (@client.estado==="basico")%>
-    <a href="#" class="btn btn-outline-primary">Hacer Premium</a> 
+   <% if (@client.estado==="basico") %>
+
+   
+    <%= link_to 'Hacer Premium', hacerPremium_path(@client), class: 'btn btn-outline-warning', data:{ confirm: '¿Realmente querés hacer Premium a éste cliente?' } %>
+    <br>
+
+</div>
+
+
+   
+ 
+
+
  <% else%>
-    <a href="#" class="btn btn-outline-primary">Hacer Básico</a> 
+     <%=link_to 'Hacer cliente básico',@client, method: :hacerBasico, class: 'btn btn-outline-primary', data:{ confirm: '¿Realmente querés hacer Premium a éste cliente?'} %>
+
   <%end%>
 
 
@@ -74,3 +86,4 @@
 <div align="right">
   <a href="/clients" class="btn btn-outline-dark">Volver al listado</a> </div>
 </div>
+
