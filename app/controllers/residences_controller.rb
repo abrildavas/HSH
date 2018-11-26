@@ -26,6 +26,17 @@ class ResidencesController < ApplicationController
        flash[:danger] = 'Ingrese una fecha que empieze el lunes' 
     else 
         flash[:success] = 'El checkeo funciona'
+        @week = Week.where(residence_id: params[:residence_id],inicio: fecha)
+        if (@week.any? == false)
+            @week = Week.new(residence_id: params[:residence_id],inicio: fecha,fin: fecha + 7.days,estado: "Libre") 
+            if (@week.save)
+               flash[:success] = "En la semana del " + fecha.strftime("%d/%m/%Y") + " la propiedad esta en estado Libre"
+            else
+               flash[:error] = "La propiedad no tiene nada en la semana por alguna razon"
+            end
+        else 
+            flash[:success] = "En la semana del " + @week.first.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.first.estado
+        end
     end
     redirect_back(fallback_location: root_path)
   end

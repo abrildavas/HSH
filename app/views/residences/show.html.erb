@@ -20,6 +20,7 @@
     </div>
     <form action=<%= residence_dates_path(@residence)%>>
          <input type="hidden" name="id" value=<%=@residence.id%> />
+         <input type="hidden" name="residence_id" value=<%=@residence.id%> />
          <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
