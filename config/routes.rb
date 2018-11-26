@@ -47,12 +47,15 @@ Rails.application.routes.draw do
 
   root 'administrators#home'
 
+  get 'residences/:id/cambio', to: 'residences#cambio', as: 'residence_change'
+
   get 'residences/:id/dates', to: 'residences#dates', as:'residence_dates' 
 
   get 'administrators/sesionIniciada/:id', to: 'administrators#sesionIniciada'
 
   get 'clients/sesionIniciada/:id', to: 'clients#sesionIniciada'
   
+  get 'residences/:id/estado', to: 'residences#editarEstado', as: 'residence_estado'
 
   get  'iniciarSesion',to:'administrators#iniciarSesion'
 
