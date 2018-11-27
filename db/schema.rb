@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181121185259) do
+ActiveRecord::Schema.define(version: 20181123113254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20181121185259) do
     t.float "precioActual"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "residence_id"
   end
 
   create_table "bids", force: :cascade do |t|
@@ -43,6 +44,8 @@ ActiveRecord::Schema.define(version: 20181121185259) do
     t.time "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "client_id"
+    t.integer "auction_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -61,6 +64,10 @@ ActiveRecord::Schema.define(version: 20181121185259) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "estado"
+    t.string "marcaTarj"
+    t.integer "numTarj"
+    t.date "fechaVencTarj"
     t.index ["email"], name: "index_clients_on_email", unique: true
     t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
@@ -81,6 +88,7 @@ ActiveRecord::Schema.define(version: 20181121185259) do
     t.datetime "updated_at", null: false
     t.date "fechaInicio"
     t.date "fechaFin"
+    t.integer "client_id"
   end
 
   create_table "residences", force: :cascade do |t|
@@ -103,6 +111,7 @@ ActiveRecord::Schema.define(version: 20181121185259) do
     t.string "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "residence_id"
   end
 
 end

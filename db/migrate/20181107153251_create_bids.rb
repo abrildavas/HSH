@@ -3,8 +3,7 @@ class CreateBids < ActiveRecord::Migration[5.1]
     create_table :bids do |t|
       t.float :valor
       t.time :fecha
-
-      t.timestamps
+         t.timestamps
     end
   end
 end

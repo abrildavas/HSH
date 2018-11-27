@@ -11,13 +11,8 @@ class ClientsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get clients_new_url
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get clients_edit_url
+  test "should get delete" do
+    get clients_delete_url
     assert_response :success
   end
 
@@ -26,13 +21,8 @@ class ClientsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get destroy" do
-    get clients_destroy_url
-    assert_response :success
-  end
-
-  test "should get sesionIniciada" do
-    get clients_sesionIniciada_url
+  test "should get new" do
+    get clients_new_url
     assert_response :success
   end
 

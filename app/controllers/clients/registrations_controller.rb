@@ -7,14 +7,34 @@ class Clients::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+   def new
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+     super
+   end
+
+  #POST /resource
+   def create
+    #Validacion de Edad >= 18 años antes de registrarse
+    fn=Date.parse(params[:client][:fechaNac])
+    if ((fn.month>= Date.today.month) and (fn.day>= Date.today.day) )then
+      age=Date.today.year-fn.year
+    else
+      age=Date.today.year-fn.year-1
+    end
+    if age<18 then
+
+      flash[:notice]="Debes ser mayor de 18 años para registrarte"
+      redirect_to "clients/sign_up"
+    else
+
+         super 
+         self.resource.fechaReg=Date.today
+         self.resource.estado="basico"
+         self.resource.creditos="2"
+         self.resource.save
+       end
+
+   end
 
   # GET /resource/edit
   # def edit
@@ -30,6 +50,21 @@ class Clients::RegistrationsController < Devise::RegistrationsController
   # def destroy
   #   super
   # end
+   private
+
+  def sign_up_params
+    params.require(:client).permit(:nombre ,:apellido, :dni, :fechaNac, :marcaTarj, :numTarj, :fechaVencTarj, :email, :password, :password_confirmation)
+    
+  end
+
+  def account_update_params
+     params.require(:client).permit(:nombre ,:apellido, :dni, :fechaNac, :marcaTarj, :numTarj, :fechaVencTarj, :email, :password, :password_confirmation, :current_password)
+   
+  end
+
+
+
+
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

@@ -6,7 +6,6 @@ class CreateResidences < ActiveRecord::Migration[5.1]
       t.string :urlImag
       t.float :precio
       t.string :estado
-
       t.timestamps
     end
   end

@@ -6,49 +6,19 @@
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-  <!-- Navbar content -->
-  <br>
-  <br>
+    <% if (client_signed_in? || administrator_signed_in? ) %>
+     <% if client_signed_in? then%>
 
-   <h1 class="text-white bg-dark" align="right"> Cadena de Hoteles</h1>
-
-
-   <div align="right">
- 
-   
-    <%= link_to 'Registrarse',new_client_registration_path,class:"btn btn-info" %>
-
-    <%= link_to 'Iniciar Sesión',new_client_session_path,class:"btn btn-primary" %>
- 
-		</div>
- 
-</nav>
+      <%= render "layouts/headerLoginClient"%>
+    
+     <% else %>
+    <%= render "layouts/headerLoginAdmin"%>
+      <% end%>
+  <%else  %>
+   <%= render  "layouts/headerLogout"%>
+   <% end %>
 
 
-		  <center> <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          
-          <center><%= link_to root_path, class: 'navbar-brand' do %>
-            <%= image_tag "HSH-Complete.svg", title: "Logo", class: "image" %>
-          </center>
-              <% end %>
-        </div>
-   			
-       
-      </div>
-       </div> </center>
-       <
-
-<nav class="navbar navbar-dark bg-dark">
-      <h4 class="text-white bg-dark"> Propiedades </h5>
-
-
-   
-       <br>
-       <br>
-</nav>
         <br>
        <br>
        <div class="shadow p-3 mb-5 bg-white rounded">
@@ -73,8 +43,8 @@
 </div>
 </div>
 
+ <h6 class="text-secondary"> -Para ver más propiedades y poder reservar, inicie sesion...</h6>
 
-<h6 class="text-secondary"> -Para ver más propiedades y poder reservar, inicie sesion...</h6>
        <br>
 
 

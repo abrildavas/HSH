@@ -19,13 +19,13 @@ class ResidencesController < ApplicationController
   def edit
     @residence=Residence.find(params[:id])
 
-
   end
 
 
   def create
-  	@residence=Residence.new(params.require(:residence))
-  	if @monstruo.save 
+  	@residence=Residence.new(params.require(:residence).permit(:nombre ,:descripcion, :urlImag, :precio, :estado,:pais,:provincia,:localidad, :direccion))
+
+  	if @residence.save 
   		redirect_to "/residences", notice: "se agregó la nueva propiedad"
 
   		else
@@ -33,11 +33,7 @@ class ResidencesController < ApplicationController
       end
 
   end
-  def destroy
-    
-    
-  end
-
+  
   def destroy
     @residence=Residence.find(params[:id])
     name=@residence.nombre

@@ -1,23 +1,33 @@
 class ClientsController < ApplicationController
   def index
+    #@clients = Client.all
   end
 
   def show
+    #@client=Client.find(params[:id])
   end
 
-  def new
+
+  def delete
+
   end
 
-  def edit
-  end
+
 
   def create
-  end
 
-  def destroy
-  end
+    #@client=Client.new(params.require(:client).permit(:nombre ,:apellido, :dni, :fechaNac, :mail,:password,:fechaReg,:creditos))
 
-  def sesionIniciada
+    # @client.save 
+
+
     
+
+  end
+
+
+  def new
+   # @client= Client.new
+
   end
 end
