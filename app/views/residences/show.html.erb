@@ -18,8 +18,18 @@
       <p class="card-text"><%=@residence.descripcion%></p>
       <p class="card-text"><h4 class="text-muted"> <%=@residence.pais%>, <%=@residence.provincia%>, <%=@residence.localidad%>, <%=@residence.direccion%></h4></p>
     </div>
-    <a href="#" class="btn btn-outline-primary">Ver Calendario</a> <!--AGREGAR LINK DEL CALENDARIO -->
-
+    <form action=<%= residence_dates_path(@residence)%>>
+         <input type="hidden" name="residence_id" value=<%=@residence.id%> />
+         <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
+          </div>
+         <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" aria-describedby="basic-addon1" required>
+         <div class="input-group-append">
+            <button type="submit" class="btn btn-outline-primary">Ver calendario</button>
+         </div>
+        </div>
+    </form>
       <div align="right">
   <a href="/residences" class="btn btn-outline-dark">Volver al listado</a> </div>
   </div>

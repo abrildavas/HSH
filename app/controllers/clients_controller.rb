@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
 
   def index
+
     @clients = Client.all
   end
 
@@ -9,21 +10,15 @@ class ClientsController < ApplicationController
   end
 
 
-
   def create
-    @client=Client.new(params.require(:client).permit(:nombre ,:apellido, :dni, :fechaNac, :mail,:password))
+    #@client=Client.new(params.require(:client).permit(:nombre ,:apellido, :dni, :fechaNac, :mail,:password,:fechaReg,:creditos))
 
-    if @client.save then
-      redirect_to "/clients", notice: ""
-
-      else
-        render :new
-      end
+    # @client.save 
   end
 
 
   def new
-    @client= Client.new
+  # @client= Client.new
 
   end
 
@@ -44,7 +39,10 @@ def hacerBasico
   name=c.nombre+" "+c.apellido
   client.estado="basico"
   if client.save then 
-    redirect_to client_path(client),notice:"#{name} ahora es cliente básico ."
+    redirect_to client_path(client),notice:"#{name} ahora es cliente básico ."    
+
+  end
+
   end
 end
   

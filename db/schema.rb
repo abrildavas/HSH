@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181123113254) do
+ActiveRecord::Schema.define(version: 20181126184926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20181123113254) do
     t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_administrators_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
 
   create_table "auctions", force: :cascade do |t|
@@ -29,7 +36,7 @@ ActiveRecord::Schema.define(version: 20181123113254) do
     t.float "precioActual"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "residence_id"
+    t.integer "week_id"
   end
 
   create_table "bids", force: :cascade do |t|
@@ -56,6 +63,22 @@ ActiveRecord::Schema.define(version: 20181123113254) do
     t.string "marcaTarj"
     t.integer "numTarj"
     t.date "fechaVencTarj"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_clients_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "direccion"
+    t.string "localidad"
+    t.string "provincia"
+    t.string "pais"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -89,6 +112,7 @@ ActiveRecord::Schema.define(version: 20181123113254) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "residence_id"
+    t.integer "preciohs"
   end
 
 end

@@ -1,0 +1,51 @@
+
+
+<nav class="navbar navbar-dark bg-dark">
+  <!-- Navbar content -->
+   <h1 class="text-white bg-dark" align="left"> Iniciar Sesión</h1>
+    </nav>
+       <br>
+  <div class="card text-center">
+  <div class="card-header">
+    Para disfrutar de nuestros servicios, inicie sesión:
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+
+
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="form-group">
+                  <div align="left"><%= f.label :email, 'Ingrese su email'%></div>
+
+                  <%= f.email_field :email,class: "form-control",placeholder: "ejemplo@hsh.com", required: true%>
+
+                     <br>
+
+                  <div align="left"> <%= f.label :password,'Ingrese su contraseña' %></div>
+                  <%= f.password_field :password, class: "form-control", placeholder: "contraseña", required: true%>
+                  <br>
+                  <br>
+                  <center><%= f.submit 'Ingresar', class: 'btn btn-primary btn-lg'%> </center>
+                  </div>
+                  <br>
+                    <div align="left">
+                    <div class="form-text text-muted">
+                      Si aún no tiene una cuenta, puede registrarse aquí
+                    </div> 
+                      <%=link_to 'Registrarse',new_client_registration_path,class:"btn btn-outline-primary"%>
+                  </div>
+                  <br>
+               
+                  
+
+          <%end %>          
+
+
+  </div>
+</div>
+<br>
+<br>
+   <div align="right">
+                    <%=link_to 'Administrador',new_administrator_session_path,class:"btn btn-outline-secondary"%>            
+                  </div>
