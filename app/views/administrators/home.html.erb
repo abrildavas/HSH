@@ -6,37 +6,19 @@
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-  <!-- Navbar content -->
-   <h1 class="text-white bg-dark"> Bienvenido</h1>
-   <div align="right"> <a href="/iniciarSesion" class="btn btn-light">Iniciar Sesión</a>
-		</div>
- 
-</nav>
+    <% if (client_signed_in? || administrator_signed_in? ) %>
+     <% if client_signed_in? then%>
+
+      <%= render "layouts/headerLoginClient"%>
+    
+     <% else %>
+    <%= render "layouts/headerLoginAdmin"%>
+      <% end%>
+  <%else  %>
+   <%= render  "layouts/headerLogout"%>
+   <% end %>
 
 
-		  <center> <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          
-          <%= link_to root_path, class: 'navbar-brand' do %>
-            <%= image_tag "HSH-Complete.svg", title: "Logo", class: "image" %>
-              <% end %>
-        </div>
-   			
-       
-      </div>
-       </div> </center>
-       <
-
-<nav class="navbar navbar-dark bg-dark">
-      <h4 class="text-white bg-dark"> Propiedades </h5>
-
-
-   
-       <br>
-       <br>
-</nav>
         <br>
        <br>
        <div class="shadow p-3 mb-5 bg-white rounded">
@@ -46,7 +28,7 @@
   <div class="card-body">
     <h5 class="card-title">HOT SALE</h5>
 
-    <p class="card-text"><small class="text-muted"> week: -- to ---</small></p>
+    <p class="card-text"><small class="text-muted">--</small></p>
   </div>
 </div>
 </div>
@@ -55,18 +37,18 @@
   <div class="card">
   <div class="card-body">
     <h5 class="card-title"> PROPIEDAD </h5><% r=Residence.find(rand(1..(Residence.last.id)))%>
-    <h5><a href=<%=residence_path(r)%> class="card-title"><%=r.nombre%></a></h5>
+    <h4><a href=<%=residence_path(r)%> class="card-title"><%=r.nombre%></a></h4>
 
        <%= image_tag r.urlImag ,size: "500x500", class: "card-img-top" %>
     <p class="card-text"><%=r.descripcion%></p>
-    <p class="card-text"><small class="text-muted">week: --- to ---</small></p>
+    <p class="card-text"><small class="text-muted">-</small></p>
   </div>
-  <img class="card-img-bottom" src=".../100px180/" alt="Card image cap">
+  
 </div>
 </div>
 
+ <h6 class="text-secondary"> -Para ver más propiedades y poder reservar, inicie sesion...</h6>
 
-<h6 class="text-secondary"> -Para ver más propiedades y poder reservar, inicie sesion...</h6>
        <br>
 
 
