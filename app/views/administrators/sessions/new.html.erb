@@ -1,0 +1,41 @@
+
+<nav class="navbar navbar-dark bg-dark">
+  <!-- Navbar content -->
+   <h1 class="text-white bg-dark" align="left"> Iniciar Sesión:</h1>
+  
+    </nav>
+       <br>
+      <br>
+   
+
+      <div class="alert alert-warning" role="alert">
+   <h1 class="text-warning" align="center"> Administrador </h1>
+
+  <hr>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  
+                     <br>
+                  <div align="left"> <%= f.label :password,'Ingresar contraseña' %></div>
+                  <%= f.password_field :password, class: "form-control", placeholder: "contraseña", required: true%>
+                  <br>
+                  <br>
+                  <center><%= f.submit 'Ingresar', class: "btn btn-warning"%> </center>
+                  </div>
+                  <br>
+                    
+          <%end %>    
+
+</div>
+       
+          <br>
+          <br>
+          <br>
+          <div align="left">
+            <%=link_to 'Volver', new_client_session_path, class:"btn btn-outline-primary" %>
+          </div>
+         
+
+
+
+      

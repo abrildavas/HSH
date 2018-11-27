@@ -18,8 +18,8 @@ class ResidencesController < ApplicationController
 
   def edit
     @residence=Residence.find(params[:id])
-
   end
+  
   def cambio
     @residence=Residence.find(params[:residence_id])
     fecha = Date.parse(params[:inicio])
@@ -91,6 +91,7 @@ class ResidencesController < ApplicationController
    else
     @week = @week.first
    end
+
   end
 
   def dates

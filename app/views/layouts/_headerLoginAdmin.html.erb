@@ -1,0 +1,52 @@
+<header>
+  <nav class="navbar navbar-dark bg-dark">
+    <br>
+    <br>
+    <div align="left">
+      <h1 class="text-light bg-dark"><%="Bienvenido  " %></h1>
+
+    </div>
+     <div align="center">
+      <h3 class=" text-light">  Administrador</h3>
+   
+
+     
+    </div>
+<div align="right">
+      <%= button_to "Cerrar Sesion",destroy_administrator_session_path, :method => :delete, :class => "btn btn-warning" %>
+
+</div>
+
+    </nav>
+    
+  
+
+  <div class="shadow p-3 mb-5 bg-white rounded">
+
+    <div class="media">
+      <%= link_to "/", class: 'navbar-brand' do %>
+            <%= image_tag "HSH-Logo.svg",size: "148x98", title: "Logo", class: "image" %>
+              <% end %>
+
+<div align="left">
+ <div class="media-body">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          
+          <%= link_to "/", class: 'navbar-brand' do %>
+            <%= image_tag "HSH-Text.svg",size: "890x80",title: "HSH", class: "image" %>
+              <% end %>
+        </div>
+        
+      </div>
+       </div> 
+  </div>
+</div>
+</div>
+</div>
+
+<br>
+
+
+</header>

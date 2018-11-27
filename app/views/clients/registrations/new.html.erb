@@ -1,0 +1,92 @@
+
+    <hr>
+    <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">¿Qué significa ser Cliente ?</h1>
+    <p class="lead">Al registrarse como cliente en nuestro sitio web, obtiene los beneficios de poder realizar reservas online para adjudicarse una semana en alguna de nuestra residencias. Al momento de incribirse lo hará como cliente básico por un costo mensual de : $ --- y recibirá dos créditos anuales que le permitirán realizar reservas. Como cliente básico podrá acceder a Hotsales como tambien participar en subastas y poder ganar una semana una de nuestras residencias !  </p>
+  </div>
+</div>
+
+<hr>
+
+ <h1 class="text-dark" align="left"> Registrarse</h1>
+   <hr>
+
+ 
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+    
+<div class="row">
+
+    
+  <div class="col">
+   <%= f.label :nombre %>
+    <%= f.text_field :nombre, placeholder: "Ingrese su nombre", class: "form-control" ,required: true%>
+    </div>
+    <div class="col">
+
+    <%= f.label :apellido %>
+    <%= f.text_field :apellido, placeholder: "Ingrese su apellido", class: "form-control",required: true%>
+  </div>
+  </div>
+   <br>
+<div class="row">
+  <div class="col">
+     <%= f.label :fechaNac, 'Fecha de Nacimiento' %>
+     <%= f.text_field :fechaNac,type: 'date', class: "form-control",required: true%>
+   </div>
+    <div class="col">
+    <%= f.label :DNI %>
+    <%= f.number_field :dni, placeholder: "Ingrese su documento", class: "form-control",required: true%>
+  </div>
+    
+  </div>
+  <br>
+  
+
+  <div class="row">  
+     <div class="col">
+     <%= f.label :marcaTarj, 'Marca de Tarjeta' %>
+     <%= f.text_field :marcaTarj, class: "form-control",required: true%>
+   </div>
+     <div class="col">
+     <%= f.label :numTarj, 'Número de Tarjeta' %>
+     <%= f.number_field :numTarj, class: "form-control",required: true%>
+   </div>
+       <div class="col">
+     <%= f.label :fechaVencTarj, 'Fecha de Vencimiento' %>
+     <%= f.text_field :fechaVencTarj,type: 'date', class: "form-control",required: true%>
+   </div>
+   </div>
+   <br>
+
+  <h5 class="text-dark">Cuenta de HSH: </h5>
+  <hr>
+  
+   <div class="row">
+    <div class="col">
+       <%= f.label :email, 'Email' %>
+     <%= f.email_field :email, placeholder: "ejemplo@hsh.com", class: "form-control", required: true%>
+     <br>
+     </div>
+   </div>
+   <div class="row">
+     <div class="col">
+       <%= f.label :password, 'Contraseña' %>
+     <%= f.password_field :password, placeholder: "Ingrese su contraseña", class: "form-control" %>
+     <br>
+   </div>
+ </div>
+ <div class="row">
+   <div class="col">
+       <%= f.label :password_confirmation, 'Confirmar contraseña' %>
+    <%= f.password_field :password_confirmation, placeholder: "introduzca nuevamente la contraseña", class: "form-control" %><br>
+  </div>
+  </div>
+
+
+<br>
+ <div align="center" ><%= f.submit "Registrarme", class: "btn btn-info" %> </div>
+ <% end %>
+

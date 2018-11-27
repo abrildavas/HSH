@@ -1,8 +1,16 @@
 class AdministratorsController < ApplicationController
 
   def home
-  	render :layout =>false
-  	
+    render :layout => false
+    if client_signed_in? then
+      @client=current_client
+    end
+
+        
+
+    
+
+
   end
 
   def validarLogIn
