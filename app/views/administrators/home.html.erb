@@ -41,10 +41,11 @@
        <br>
        <div class="shadow p-3 mb-5 bg-white rounded">
         <div class="card mb-3">
-  <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+          
+    
   <div class="card-body">
     <h5 class="card-title">HOT SALE</h5>
-    <p class="card-text">Descripcion a mostrar de la residencia que se encuentra en hot sale.</p>
+
     <p class="card-text"><small class="text-muted"> week: -- to ---</small></p>
   </div>
 </div>
@@ -53,8 +54,11 @@
 <div class="shadow p-3 mb-5 bg-white rounded">
   <div class="card">
   <div class="card-body">
-    <h5 class="card-title"> PROPIEDAD </h5>
-    <p class="card-text">Descripción de la propiedad a mostrar..</p>
+    <h5 class="card-title"> PROPIEDAD </h5><% r=Residence.find(rand(1..(Residence.last.id)))%>
+    <h5><a href=<%=residence_path(r)%> class="card-title"><%=r.nombre%></a></h5>
+
+       <%= image_tag r.urlImag ,size: "500x500", class: "card-img-top" %>
+    <p class="card-text"><%=r.descripcion%></p>
     <p class="card-text"><small class="text-muted">week: --- to ---</small></p>
   </div>
   <img class="card-img-bottom" src=".../100px180/" alt="Card image cap">

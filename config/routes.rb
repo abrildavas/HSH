@@ -1,48 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'weeks/index'
-
-  get 'weeks/show'
-
-  get 'weeks/delete'
-
-  get 'weeks/new'
-
-  get 'weeks/create'
-
-  get 'reservations/index'
-
-  get 'reservations/show'
-
-  get 'reservations/delete'
-
-  get 'reservations/create'
-
-  get 'clients/delete'
-
-  get 'bids/index'
-
-  get 'bids/show'
-
-  get 'bids/delete'
-
-  get 'bids/create'
-
-  get 'bids/new'
-
-  get 'auctions/index'
-
-  get 'auctions/show'
-
-  get 'auctions/create'
-
-  get 'auctions/new'
-
-  get 'auctions/delete'
 
   resources :administrators
   resources :residences
   resources :clients
+  resources :auctions
+  resources :bids
+
 
 
   root 'administrators#home'
@@ -60,6 +24,10 @@ Rails.application.routes.draw do
   get  'iniciarSesion',to:'administrators#iniciarSesion'
 
   get 'validarLogIn',to:'administrators#validarLogIn'
+
+  get 'hacerPremium/:id', to:'clients#hacerPremium', as: 'hacerPremium'
+  get 'hacerBasico/:id', to:'clients#hacerBasico', as: 'hacerBasico'
+
   
 
 
