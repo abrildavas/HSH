@@ -30,50 +30,50 @@ class ResidencesController < ApplicationController
       @auction = Auction.find_by(week_id: @week.first.id)
       if (@auction != nil)
        @auction.delete
-     end  
-     @week.first.estado = "Libre"  
-   when "No disponible" 
+      end  
+      @week.first.estado = "Libre"  
+    when "No disponible" 
     @auction = Auction.find_by(week_id: @week.first.id)
     if (@auction != nil)
      @auction.delete
-   end 
-   @week.first.estado = "No disponible"   
- when "Subasta"
-  @week.first.estado = "Subasta"
-  @auction = Auction.new
-  @auction.precioBase = @residence.precio
-  @auction.precioActual = @residence.precio
-  @auction.week_id = @week.first.id 
-  if (@auction.save)
-    flash[:success] = 'Se creo correctamente la subasta, precio de la residencia: #{@auction.precioActual} '
-  else
+    end 
+    @week.first.estado = "No disponible"   
+    when "Subasta"
+    @week.first.estado = "Subasta"
+    @auction = Auction.new
+    @auction.precioBase = @residence.precio
+    @auction.precioActual = @residence.precio
+    @auction.week_id = @week.first.id 
+    if (@auction.save)
+      flash[:success] = 'Se creo correctamente la subasta, precio de la residencia: #{@auction.precioActual} '
+    else
+      flash[:danger] = 'Por alguna razon se ingreso un estado equivocado'
+    end
+    when "Hot sale"
+    @auction = Auction.find_by(week_id: @week.first.id)
+    if (@auction != nil)
+      @auction.delete
+    end  
+    precio = params[:precio]     
+    if !(precio.nil? || precio.empty?)
+      @week.first.estado = "Hot sale"
+      @week.first.preciohs = precio
+    else  
+      flash[:danger] = 'No se ha entrado un precio para el hot sale'
+      redirect_back(fallback_location: "/residences") and return
+    end
+    else
     flash[:danger] = 'Por alguna razon se ingreso un estado equivocado'
+    redirect_back(fallback_location: "/residences") and return 
+    end
+    if (@week.first.save)
+      flash[:success] = 'Se ha hecho el cambio con exito'
+      redirect_to "/residences"
+    else
+      flash[:danger] = 'Ha habido un error desconocido'
+      redirect_back(fallback_location: "/residences")      
+    end
   end
-when "Hot sale"
-  @auction = Auction.find_by(week_id: @week.first.id)
-  if (@auction != nil)
-   @auction.delete
- end  
- precio = params[:precio]     
- if !(precio.nil? || precio.empty?)
-  @week.first.estado = "Hot sale"
-  @week.first.preciohs = precio
-else  
-  flash[:danger] = 'No se ha entrado un precio para el hot sale'
-  redirect_back(fallback_location: "/residences") and return
-end
-else
-  flash[:danger] = 'Por alguna razon se ingreso un estado equivocado'
-  redirect_back(fallback_location: "/residences") and return 
-end
-if (@week.first.save)
- flash[:success] = 'Se ha hecho el cambio con exito'
- redirect_to "/residences"
-else
- flash[:danger] = 'Ha habido un error desconocido'
- redirect_back(fallback_location: "/residences")      
-end
-end
 
 def editarEstado
   fecha = Date.parse(params[:fechaInicio])
@@ -110,15 +110,16 @@ def dates
      flash[:success] = "En la semana del " + @week.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.estado
      if @week.estado == "Subasta" 
       redirect_to auction_path(Auction.where(week_id:@week.id))
+     end
     else
      flash[:error] = "La propiedad no tiene nada en la semana por alguna razon"
-   end
- else 
-  flash[:success] = "En la semana del " + @week.first.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.first.estado
-end
-end
-redirect_back(fallback_location: residences_path)
-end
+    end
+  else 
+     flash[:success] = "En la semana del " + @week.first.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.first.estado
+  end
+  end
+  redirect_back(fallback_location: residences_path)
+  end
 
 def create
  @residence=Residence.new(params.require(:residence).permit(:nombre ,:descripcion, :urlImag, :precio, :estado,:pais,:provincia,:localidad, :direccion))
