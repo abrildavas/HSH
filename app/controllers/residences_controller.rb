@@ -88,10 +88,9 @@ def editarEstado
   if (fecha<=Date.today + 8.months && fecha>=Date.today + 6.months) 
     @week.estado = "Libre"
   end
-else
+ else
   @week = @week.first
-end
-
+ end
 end
 
 def dates
@@ -117,20 +116,17 @@ def dates
   else 
      flash[:success] = "En la semana del " + @week.first.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.first.estado
   end
-  end
-  redirect_back(fallback_location: residences_path)
-  end
+ end
+ redirect_back(fallback_location: residences_path)
+end
 
 def create
  @residence=Residence.new(params.require(:residence).permit(:nombre ,:descripcion, :urlImag, :precio, :estado,:pais,:provincia,:localidad, :direccion))
-
  if @residence.save 
   redirect_to "/residences", notice: "se agregó la nueva propiedad"
-
 else
  render :new
 end
-
 end
 
 def destroy
@@ -151,3 +147,4 @@ def update
     redirect_to "/residences",  notice:"Error al actualizar la residencia #{@residence.nombre}"
   end
 end 
+end
