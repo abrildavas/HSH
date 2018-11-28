@@ -24,11 +24,11 @@ class Clients::RegistrationsController < Devise::RegistrationsController
     if age<18 then
 
       flash[:notice]="Debes ser mayor de 18 años para registrarte"
-      redirect_to "/"
+       redirect_back(fallback_location: new_client_registration_path)
     else
       if (Date.parse(params[:client][:fechaVencTarj]).past?)
         flash[:notice]="La tarjeta #{params[:client][:marcaTarj]} está vencida"
-        redirect_to "/"
+         redirect_back(fallback_location: new_client_registration_path)
      else
       super 
          self.resource.fechaReg=Date.today
