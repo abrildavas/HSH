@@ -6,7 +6,7 @@
     </nav>
        <br>
       <br>
-   
+   <div class="container">
 
       <div class="alert alert-warning" role="alert">
    <h1 class="text-warning" align="center"> Administrador </h1>
@@ -14,8 +14,11 @@
   <hr>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                      <%= f.label :email%>
-                      <%= f.text_field :email, value: 'administrador@hsh.com', class: "form-control", readonly: true%>
+
+
+                     
+                      <%= f.text_field :email, value: "administrador@hsh.com", class: "form-control", readonly: true%>
+
 
                       <br>
                   <div align="left"> <%= f.label :password,'Ingresar contraseña' %></div>
@@ -36,7 +39,7 @@
           <div align="left">
             <%=link_to 'Volver', new_client_session_path, class:"btn btn-outline-primary" %>
           </div>
-         
+         </div>
 
 
 
