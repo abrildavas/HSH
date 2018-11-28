@@ -11,10 +11,9 @@ class AuctionsController < ApplicationController
 
   def create
 
-    @auction=Auction.new(params.require(:auction).permit(:precioBase ,:precioActual,:residence_id))
+    @auction=Auction.new(params.require(:auction).permit(:precioBase ,:precioActual,:week_id))
 
     if @auction.save 
-      redirect_to "#", notice: "-"
 
       else
         render :new
@@ -31,5 +30,6 @@ class AuctionsController < ApplicationController
 
 
   def delete
+    
   end
 end

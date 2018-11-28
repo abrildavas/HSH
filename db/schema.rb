@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181126184926) do
+ActiveRecord::Schema.define(version: 20181128091518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20181126184926) do
     t.datetime "updated_at", null: false
     t.string "estado"
     t.string "marcaTarj"
-    t.integer "numTarj"
+    t.bigint "numTarj"
     t.date "fechaVencTarj"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

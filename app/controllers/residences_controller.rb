@@ -1,6 +1,8 @@
 class ResidencesController < ApplicationController
 
   def index
+    render layout: false
+
 
   end
 
@@ -45,7 +47,7 @@ class ResidencesController < ApplicationController
       @auction.precioActual = @residence.precio
       @auction.week_id = @week.first.id 
       if (@auction.save)
-        flash[:success] = 'Se creo correctamente la subasta'
+        flash[:success] = 'Se creo correctamente la subasta, precio de la residencia: #{@auction.precioActual} '
       else
         flash[:danger] = 'Por alguna razon se ingreso un estado equivocado'
       end
@@ -78,7 +80,7 @@ class ResidencesController < ApplicationController
   def editarEstado
     fecha = Date.parse(params[:fechaInicio])
     if (fecha != fecha.monday) 
-     flash[:danger] = 'Ingrese una fecha que empieze el lunes'
+     flash[:danger] = 'Ingrese una fecha que empiece el lunes'
      redirect_back(fallback_location: residences_path)
    end
    @residence=Residence.find(params[:residence_id])
@@ -97,7 +99,7 @@ class ResidencesController < ApplicationController
   def dates
     fecha = Date.parse(params[:fechaInicio])
     if (fecha != fecha.monday) 
-       flash[:danger] = 'Ingrese una fecha que empieze el lunes' 
+       flash[:danger] = 'Ingrese una fecha que empiece el lunes' 
     else 
         flash[:success] = 'El checkeo funciona'
         @week = Week.where(residence_id: params[:residence_id],inicio: fecha)
@@ -108,6 +110,8 @@ class ResidencesController < ApplicationController
             end
             if (@week.save)
                flash[:success] = "En la semana del " + @week.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.estado
+               if @week.estado === "Subasta" 
+                redirect_to auction_path(Auction.where(week_id:@week.id))
             else
                flash[:error] = "La propiedad no tiene nada en la semana por alguna razon"
             end

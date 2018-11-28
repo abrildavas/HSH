@@ -1,16 +1,7 @@
 
 
- <nav class="navbar navbar-dark bg-dark">
-  <!-- Navbar content -->
-   <h1 class="text-white bg-dark"> Sesion Iniciada</h1>
+<%if (administrator_signed_in?) then %>
 
-
-   <!--<%= link_to 'Usuario: #{@admin.nombre} #{@admin.apellido}', '/administrators/perfil' %>  -->
-
-   <!--<div align="right"> <a href="" class="btn btn-secondary">Administrador </a>
-    </div>-->
- 
-</nav>
 
 <nav class="navbar navbar-dark bg-dark">
 
@@ -66,5 +57,6 @@
 
 </div>
 
+<%end%>
 
 

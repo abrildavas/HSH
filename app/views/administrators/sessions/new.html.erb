@@ -14,8 +14,10 @@
   <hr>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                  
-                     <br>
+                      <%= f.label :email%>
+                      <%= f.text_field :email, value: 'administrador@hsh.com', class: "form-control", readonly: true%>
+
+                      <br>
                   <div align="left"> <%= f.label :password,'Ingresar contraseña' %></div>
                   <%= f.password_field :password, class: "form-control", placeholder: "contraseña", required: true%>
                   <br>
