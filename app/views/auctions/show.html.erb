@@ -1,2 +1,54 @@
-<h1>Auctions#show</h1>
-<p>Find me in app/views/auctions/show.html.erb</p>
+<nav class="navbar navbar-dark bg-dark">
+  <h3 class="text-white bg-dark"><%= "Propiedad: #{@auction.week.residence.nombre}"%></h3>
+</nav>
+
+<br>
+<br>
+
+<!--<div class="card">-->
+  <div class="card-body">
+  	   <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="card">
+
+
+        <%= image_tag "#{@auction.week.residence.urlImag}" ,size: "500x500", class: "card-img-top" %>
+    <div class="card-body">
+      <h3><class="card-title"><%=@auction.week.residence.nombre%></h3>
+         <h3><%="Precio $#{@residence.precio}"%></h3>
+      <p class="card-text"><%=@auction.week.residence.descripcion%></p>
+      <p class="card-text"><h4 class="text-muted"> <%=@auction.week.residence.pais%>, <%=@auction.week.residence.provincia%>, <%=@auction.week.residence.localidad%>, <%=@auction.week.residence.direccion%></h4></p>
+    </div>
+
+    <h3><class="card-text">Subasta! Semana:<%=@auction.week.inicio.strftime("%d/%m/%Y")%></h3>
+      <h4 class="text-muted"> Precio Actual: <%=@auction.precioActual%></h4>
+
+      <h4 class="text-muted"> Pujas : </h4>
+       <div class="card-group">
+      
+      <% Auction.bids.each do |bid|%>
+      
+
+          <div class="shadow p-3 mb-5 bg-white rounded">
+            <h5 class="text-muted"> - Valor <%=bid.valor%>, fecha:<%=bid.fecha%> <%=</h4>
+             </div>
+          </div>
+
+      <%end%>
+
+       <div class="shadow p-3 mb-5 bg-white rounded">
+      <a href='#' class="btn btn-outline-danger btn-lg btn-block"> Ofertar</a> </div>
+  </div>
+
+
+    
+
+      <div align="right">
+  <a href="/residences" class="btn btn-outline-dark">Volver al listado de Residencias</a> </div>
+
+
+
+
+  </div>
+</div>
+
+</div>
