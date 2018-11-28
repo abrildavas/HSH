@@ -2,8 +2,6 @@ class ResidencesController < ApplicationController
 
   def index
     render layout: false
-
-
   end
 
   def show
@@ -110,7 +108,7 @@ def dates
     end
     if (@week.save)
      flash[:success] = "En la semana del " + @week.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.estado
-     if @week.estado === "Subasta" 
+     if @week.estado == "Subasta" 
       redirect_to auction_path(Auction.where(week_id:@week.id))
     else
      flash[:error] = "La propiedad no tiene nada en la semana por alguna razon"

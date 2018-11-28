@@ -96,12 +96,12 @@
     
   <div class="card-body">
     <h5 class="card-title">HOT SALE</h5>
-    
-
-
-
-
-
+    <% if (Week.where(estado: "Hot sale").limit(1).nil?) then r=Week.where(estado: "Hot sale").limit(1).residence_id%>
+    <% residence=Residence.find(r)%>
+    <%= link_to residence_path(r) do %>
+          <%= image_tag r.urlImag ,size: "500x500", class: "card-img-top" %>
+              <% end %>
+  <%end%>
     <p class="card-text"><small class="text-muted">--</small></p>
   </div>
 </div>
