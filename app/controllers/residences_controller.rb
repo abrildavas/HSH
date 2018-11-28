@@ -74,7 +74,6 @@ class ResidencesController < ApplicationController
       redirect_back(fallback_location: "/residences")      
     end
   end
-end
 
 def editarEstado
   fecha = Date.parse(params[:fechaInicio])
@@ -103,9 +102,9 @@ def dates
   @week = Week.where(residence_id: params[:residence_id],inicio: fecha)
   if (@week.any? == false)
     @week = Week.new(residence_id: params[:residence_id],inicio: fecha,fin: fecha + 7.days,estado: "No disponible") 
-    if (fecha<=Date.today + 8.months && fecha>=Date.today + 6.months) 
-      @week.estado = "Libre"
-    end
+    #if (fecha<=Date.today + 8.months && fecha>=Date.today + 6.months) 
+    #  @week.estado = "Libre"
+    #end
     if (@week.save)
      flash[:success] = "En la semana del " + @week.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.estado
      if @week.estado == "Subasta" 
