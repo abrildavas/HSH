@@ -14,7 +14,7 @@ class Clients::RegistrationsController < Devise::RegistrationsController
 
   #POST /resource
    def create
-    #Validacion de Edad >= 18 años antes de registrarse
+     #Validacion de Edad >= 18 años antes de registrarse
     fn=Date.parse(params[:client][:fechaNac])
     if ((fn.month>= Date.today.month) and (fn.day>= Date.today.day) )then
       age=Date.today.year-fn.year
@@ -24,17 +24,23 @@ class Clients::RegistrationsController < Devise::RegistrationsController
     if age<18 then
 
       flash[:notice]="Debes ser mayor de 18 años para registrarte"
-      redirect_to "clients/sign_up"
+      redirect_to "/"
     else
-
-         super 
+      if (Date.parse(params[:client][:fechaVencTarj]).past?)
+        flash[:notice]="La tarjeta #{params[:client][:marcaTarj]} está vencida"
+        redirect_to "/"
+     else
+      super 
          self.resource.fechaReg=Date.today
          self.resource.estado="basico"
          self.resource.creditos="2"
          self.resource.save
-       end
+    
+     end
+   end
 
    end
+ 
 
   # GET /resource/edit
   # def edit

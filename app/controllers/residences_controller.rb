@@ -1,6 +1,8 @@
 class ResidencesController < ApplicationController
 
   def index
+    render layout: false
+
 
   end
 
