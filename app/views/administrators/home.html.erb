@@ -93,6 +93,14 @@
     
   <div class="card-body">
     <h5 class="card-title">HOT SALE</h5>
+    <% residence=Residence.weeks.where(estado: "Hot sale").limit(1)
+    <h3><a href=<%=residence_path(r)%> class="card-title"><%=r.nombre%></a></h3>
+
+<%= link_to residence_path(r) do %>
+          <%= image_tag r.urlImag ,size: "500x500", class: "card-img-top" %>
+              <% end %>
+
+
 
     <p class="card-text"><small class="text-muted">--</small></p>
   </div>
