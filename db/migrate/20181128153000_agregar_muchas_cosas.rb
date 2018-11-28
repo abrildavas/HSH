@@ -2,6 +2,7 @@ class AgregarMuchasCosas < ActiveRecord::Migration[5.1]
   	 def self.up
     change_table :clients do |t|
       ## Database authenticatable
+      t.string _email, null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
