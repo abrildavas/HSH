@@ -74,6 +74,7 @@ class ResidencesController < ApplicationController
       redirect_back(fallback_location: "/residences")      
     end
   end
+end
 
 def editarEstado
   fecha = Date.parse(params[:fechaInicio])
