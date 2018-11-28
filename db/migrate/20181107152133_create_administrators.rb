@@ -4,7 +4,6 @@ class CreateAdministrators < ActiveRecord::Migration[5.1]
       t.string :nombre
       t.string :apellido
       t.string :nomUsuario
-      t.string :password
 
       t.timestamps
     end

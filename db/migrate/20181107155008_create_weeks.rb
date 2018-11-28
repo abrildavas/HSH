@@ -4,7 +4,6 @@ class CreateWeeks < ActiveRecord::Migration[5.1]
       t.date :inicio
       t.date :fin
       t.string :estado
-
       t.timestamps
     end
   end

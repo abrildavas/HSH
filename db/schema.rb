@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181113152640) do
+ActiveRecord::Schema.define(version: 20181126184926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_administrators_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
 
   create_table "auctions", force: :cascade do |t|
@@ -29,6 +36,7 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.float "precioActual"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "week_id"
   end
 
   create_table "bids", force: :cascade do |t|
@@ -36,6 +44,8 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.time "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "client_id"
+    t.integer "auction_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -49,6 +59,17 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.integer "creditos"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "estado"
+    t.string "marcaTarj"
+    t.integer "numTarj"
+    t.date "fechaVencTarj"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_clients_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
 
   create_table "locations", force: :cascade do |t|
@@ -67,6 +88,7 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.datetime "updated_at", null: false
     t.date "fechaInicio"
     t.date "fechaFin"
+    t.integer "client_id"
   end
 
   create_table "residences", force: :cascade do |t|
@@ -89,6 +111,8 @@ ActiveRecord::Schema.define(version: 20181113152640) do
     t.string "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "residence_id"
+    t.integer "preciohs"
   end
 
 end
