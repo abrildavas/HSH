@@ -1,8 +1,10 @@
 class ResidencesController < ApplicationController
 
+
   def index
     render layout: false
   end
+
 
   def show
     @residence=Residence.find(params[:id])
@@ -11,7 +13,7 @@ class ResidencesController < ApplicationController
 
 
   def new
-  	@residence= Residence.new
+    @residence= Residence.new
 
   end
 
@@ -21,6 +23,7 @@ class ResidencesController < ApplicationController
   end
   
   def cambio
+
     @residence=Residence.find(params[:residence_id])
     fecha = Date.parse(params[:inicio])
     @week = Week.where(residence_id: params[:residence_id],inicio: fecha)
@@ -76,6 +79,7 @@ class ResidencesController < ApplicationController
   end
 
   def editarEstado
+
     fecha = Date.parse(params[:fechaInicio])
     if (fecha != fecha.monday) 
      flash[:danger] = 'Ingrese una fecha que empiece el lunes'
@@ -95,18 +99,22 @@ class ResidencesController < ApplicationController
   end
 
   def dates
-    fecha = Date.parse(params[:fechaInicio])
+
+     fecha = Date.parse(params[:fechaInicio])
     if (fecha != fecha.monday) 
        flash[:danger] = 'Ingrese una fecha que empiece el lunes' 
     else 
+
+
 
         flash[:success] = 'El checkeo funciona'
        if (@week.any? == false)
            @week = Week.new(residence_id: params[:residence_id],inicio: fecha,fin: fecha + 7.days,estado: "No disponible") 
             if (fecha<=Date.today + 8.months && fecha>=Date.today + 6.months) then
                 @week.estado = "Libre"
-           if (@week.save)
-               flash[:success] = "En la semana del " + @week.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.estado
+            end
+            if (@week.save)
+              flash[:success] = "En la semana del " + @week.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.estado
                 # if (@week.estado == "Subasta") 
                 #  redirect_to auction_path(Auction.where(week_id:@week.id))
             else
@@ -115,23 +123,28 @@ class ResidencesController < ApplicationController
        else 
           flash[:success] = "En la semana del " + @week.first.inicio.strftime("%d/%m/%Y") + " la propiedad esta en estado " + @week.first.estado
        end
+
+
+
     end
     redirect_back(fallback_location: residences_path)
+  
  end
 
   def create
-  	@residence=Residence.new(params.require(:residence).permit(:nombre ,:descripcion, :urlImag, :precio, :estado,:pais,:provincia,:localidad, :direccion))
+    @residence=Residence.new(params.require(:residence).permit(:nombre ,:descripcion, :urlImag, :precio, :estado,:pais,:provincia,:localidad, :direccion))
 
-  	if @residence.save 
-  		redirect_to "/residences", notice: "se agregó la nueva propiedad"
+    if @residence.save 
+      redirect_to "/residences", notice: "se agregó la nueva propiedad"
 
-  		else
-  			render :new
+      else
+        render :new
       end
 
   end
   
   def destroy
+
     @residence=Residence.find(params[:id])
     name=@residence.nombre
     if (@residence.destroy)
@@ -148,5 +161,7 @@ class ResidencesController < ApplicationController
     else
     redirect_to "/residences",  notice:"Error al actualizar la residencia #{@residence.nombre}"
     end
+    
   end 
+
 end

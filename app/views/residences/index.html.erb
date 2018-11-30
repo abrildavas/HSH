@@ -2,163 +2,148 @@
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <title> HSH- Pagina Principal</title>
 
+        <%if client_signed_in? %>
 
-    <% if (client_signed_in? || administrator_signed_in? ) %>
-     <% if client_signed_in? then%>
-
-      <%= render "layouts/headerLoginClient"%>
-    
-     <% else %>
-    <%= render "layouts/headerLoginAdmin"%>
-      <% end%>
-
-<%if (administrator_signed_in?) then %>
-
-
-<%if (administrator_signed_in?) then %>
-<nav class="navbar navbar-dark bg-dark">
-<h4 class="navbar-brand" >Menú</h4>
-    <h4 class="text-light bg-dark">Propiedades <span class="sr-only">(current)</span></h4> <!-- Aqui seccion actual -->
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
- 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Inicio </a> 
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/residences">Propiedades <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Buscar</a>
-      </li>
-      <li class="nav-item">
-         <a class="nav-link" href="#">Reservas</a>
-      </li>
-      <li class="nav-item">
-         <a class="nav-link" href="/clients">Clientes</a>
-      </li>
-      <li class="nav-item">
-         <a class="nav-link" href="#">Ayuda</a>
-      </li>
-    </ul>
-  </div>
-  </nav>
-<br>
-<div class="container">
-
-<div align="right">
-  <a href="/residences/new" class="btn btn-outline-dark">Agregar nueva Propiedad</a> </div>
-  <div class="card-group">
-    <% Residence.all.each do |residence|%>
-    <div class="shadow p-3 mb-5 bg-white rounded">
-      <div class="card">
-
-        <%= image_tag residence.urlImag ,size: "500x500", class: "card-img-top" %>
-        <div class="card-body">
-
-          <h5><a href=<%=residence_path(residence)%> class="card-title"><%=residence.nombre%></a></h5>
-          <p class="card-text"><%=residence.descripcion%></p>
-          <p class="card-text"><small class="text-muted"><%=residence.provincia%>, <%=residence.localidad%></small></p>
-
-          <%= link_to 'Modificar', edit_residence_path(residence), class: 'btn btn-primary'%>
-          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modificarEstado">Cambiar estado</button>
-          <%= link_to 'Eliminar', residence, method: :delete, class: 'btn btn-outline-danger', data:{ confirm: '¿Estás seguro que querés eliminar esta residencia?'}%>
-          <form action=<%= residence_estado_path(residence)%>>
-            <div class="modal fade" id="modificarEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Elegir semana</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                   <input type="hidden" name="residence_id" value=<%=residence.id%> />
-                   <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
-                    </div>
-                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" aria-describedby="basic-addon1" required>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="submit" class="btn btn-primary">Modificar estado</button>
+            <%= render "layouts/headerLoginClient"%>
+            <nav class="navbar navbar-dark bg-dark">
+              <p class="navbar-brand" href="#">Menú</p>
+              <p class="text-light bg-dark" href="/residences">Propiedades <span class="sr-only">(current)</span></p> <!-- Aqui seccion actual -->
+              <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/residences">Propiedades <span class="sr-only">(current)</span></a><!-- Aqui seccion actual -->
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Buscar</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Ayuda</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <br>
+          <br>
+          <div class="card-group">
+            <% Residence.all.each do |residence|%>
+            <div class="shadow p-3 mb-5 bg-white rounded">
+              <div class="card">
+                <%= image_tag residence.urlImag ,size: "500x500", class: "card-img-top" %>
+                <div class="card-body">
+                  <h5><a href=<%=residence_path(residence)%> class="card-title"><%residence.nombre%></a></h5>
+                  <p class="card-text"><%=residence.descripcion%></p>
+                  <p class="card-text"><small class="text-muted"><%=residence.provincia%>, <%=residence.localidad%></small></p>
                 </div>
               </div>
             </div>
+            <%end%>
           </div>
-        </form>
-      </div>
-    </div>
+        </div>
 
-  </div>
-  <%end%>
-</div>
+        <%else%>
+
+          <%if administrator_signed_in?%>
+            <%=render "layouts/headerLoginAdmin"%>
+            <nav class="navbar navbar-dark bg-dark">
+              <h4 class="navbar-brand" >Menú</h4>
+              <h4 class="text-light bg-dark">Propiedades <span class="sr-only">(current)
+              </span></h4> <!-- Aqui seccion actual -->
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Inicio </a> 
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/residences">Propiedades <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Buscar</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Reservas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/clients">Clientes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Ayuda</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <br>
+            <div class="container">
+              <div align="right">
+                <a href="/residences/new" class="btn btn-outline-dark">Agregar nueva Propiedad</a> </div>
+                <div class="card-group">
+                  <% Residence.all.each do |residence|%>
+                  <div class="shadow p-3 mb-5 bg-white rounded">
+                    <div class="card">
+                      <%= image_tag residence.urlImag ,size: "500x500", class: "card-img-top" %>
+                      <div class="card-body">
+                        <h5><a href=<%=residence_path(residence)%> class="card-title"><%=residence.nombre%></a></h5>
+                        <p class="card-text"><%=residence.descripcion%></p>
+                        <p class="card-text"><small class="text-muted"><%=residence.provincia%>, <%=residence.localidad%></small></p>
+                        <%= link_to 'Modificar', edit_residence_path(residence), class: 'btn btn-primary'%>
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modificarEstado">Cambiar estado</button>
+                        <%= link_to 'Eliminar', residence, method: :delete, class: 'btn btn-outline-danger', data:{ confirm: '¿Estás seguro que querés eliminar esta residencia?'}%>
+                        <form action=<%= residence_estado_path(residence)%>>
+                          <div class="modal fade" id="modificarEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Elegir semana</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <input type="hidden" name="residence_id" value=<%=residence.id%> />
+                                  <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
+                                    </div>
+                                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" aria-describedby="basic-addon1" required>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                  <button type="submit" class="btn btn-primary">Modificar estado</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <%end%>
+                </div>
+
+            <%else%>
+                <h4 class="card-title"> Para ingresar a ésta página, <%=link_to 'inicie sesión', new_client_session_path%></h4>
+            <%end%>
 
 
-<% elsif (client_signed_in?)%>
-<nav class="navbar navbar-dark bg-dark">
-
-<p class="navbar-brand" href="#">Menú</p>
-    <p class="text-light bg-dark" href="/residences">Propiedades <span class="sr-only">(current)</span></p> <!-- Aqui seccion actual -->
-
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
- 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-          <a class="nav-link" href="/residences">Propiedades <span class="sr-only">(current)</span></a><!-- Aqui seccion actual -->
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Buscar</a>
-      </li>
-
-      <li class="nav-item">
-         <a class="nav-link" href="#">Ayuda</a>
-      </li>
-    </ul>
-  </div>
-  </nav>
-  <br>
-       <br>
-
-<div class="card-group">
-    <% Residence.all.each do |residence|%>
-    <div class="shadow p-3 mb-5 bg-white rounded">
-      <div class="card">
-
-        <%= image_tag residence.urlImag ,size: "500x500", class: "card-img-top" %>
-        <div class="card-body">
-
-          <h5><a href=<%=residence_path(residence)%> class="card-title"><%=residence.nombre%></a></h5>
-          <p class="card-text"><%=residence.descripcion%></p>
-          <p class="card-text"><small class="text-muted"><%=residence.provincia%>, <%=residence.localidad%></small></p>
-
-      </div>
-    </div>
-
-  </div>
-  <%end%>
-</div>
-
-</div>
+          <%end%> 
 
 
 
-<%end%>
-<%elsif %>
-
-<h4 class="card-title"> Para ingresar a ésta página, <%=link_to 'inicie sesión', new_client_session_path%></h4>
 
 
-<%end%>
+
+
+
+
+
+
 
 
 
