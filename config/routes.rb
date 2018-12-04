@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'hot_sales/show'
+
+  get 'hot_sales/index'
+
   resources :residences
   resources :weeks
 
