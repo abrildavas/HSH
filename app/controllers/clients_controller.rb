@@ -22,7 +22,13 @@ class ClientsController < ApplicationController
 
   end
 
+def ayuda
 
+end
+
+def contacto
+
+end
 
 def hacerPremium
   c=Client.find(params[:id])

@@ -55,7 +55,8 @@ delete '/administrators/:id', to: 'administrators#destroy'
 
   get 'validarLogIn',to:'administrators#validarLogIn'
 
-
+  get 'ayuda', to: 'clients#ayuda'
+  get 'Contacto', to: 'clients#contacto'
 
   get 'hacerPremium/:id', to:'clients#hacerPremium', as: 'hacerPremium'
   get 'hacerBasico/:id', to:'clients#hacerBasico', as: 'hacerBasico'
