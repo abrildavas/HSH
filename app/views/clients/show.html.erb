@@ -35,7 +35,8 @@
     <h4>Estado de Cuenta: <%=@client.estado%></h4>
     <h4 class="card-text">Mail: <%=@client.email%></h4>
     <p class="card-text"><h4 class="text-muted"> Tarjeta de Crédito:<%=@client.marcaTarj%> <br>Número: <%=@client.numTarj%><br> Fecha de Vencimiento: <%=@client.fechaVencTarj%>. <br>  <br>Créditos disponibles: <%=@client.creditos%></h4></p>
-    <button type="button" class="btn btn-primary">Editar perfil</button>
+    <%-# implementar subastas activas cuando terminen con las subastas -%>
+    <a role="button" href=<%=edit_client_registration_path(@client)%>  class="btn btn-primary">Editar perfil</a>
   </div>
 </div>
 </div> 

@@ -43,14 +43,45 @@ class Clients::RegistrationsController < Devise::RegistrationsController
  
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    c=params[:format]
+    @client=Client.find_by(id: c)
+    if (@client==nil)
+     flash[:danger]="Usted no puede acceder a esta seccion"
+     redirect_to root_path
+   else
+     if (@client.id == current_client.id)
+      super
+    else
+     flash[:danger]="Usted no puede acceder a esta seccion"
+     redirect_to root_path
+   end
+ end
+end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+   def update
+      #Validacion de Edad >= 18 años antes de registrarse
+    fn=Date.parse(params[:client][:fechaNac])
+    if ((fn.month>= Date.today.month) and (fn.day>= Date.today.day) )then
+      age=Date.today.year-fn.year
+    else
+      age=Date.today.year-fn.year-1
+    end
+    if age<18 then
+
+      flash[:notice]="Debes ser mayor de 18 años para registrarte"
+       redirect_back(fallback_location: edit_client_registration_path)
+    else
+      if (Date.parse(params[:client][:fechaVencTarj]).past?)
+        flash[:notice]="La tarjeta #{params[:client][:marcaTarj]} está vencida"
+         redirect_back(fallback_location: edit_client_registration_path)
+     else
+      super 
+         self.resource.save
+     end
+   end
+   end
 
   # DELETE /resource
   # def destroy
