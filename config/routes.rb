@@ -25,7 +25,7 @@ get '/clients', to: 'clients#index', as: "clients"
 post '/clients', to: 'clients#create'
 get '/clients/new', to: 'clients#new', as: "new_client"
 get '/clients/:id/edit', to: 'clients#edit', as: "edit_client"
-get '/client/:id', to: 'clients#show', as: "client"
+get '/clients/:id', to: 'clients#show', as: "client"
 patch '/clients/:id', to: 'clients#update'
 put '/clients/:id', to: 'clients#update'
 delete '/clients/:id', to: 'clients#destroy'
