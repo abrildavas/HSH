@@ -31,6 +31,9 @@ class ClientsController < ApplicationController
       elsif params.has_key?(:apellido)
         c=params[:apellido]
         @client=Client.find_by("apellido ILIKE ?", "%#{c}%")
+      elsif params.has_key?(:dni)
+        c=params[:dni]
+        @client=Client.find_by(dni: c)
       else
         flash[:error]='Por alguna razon no se ha insertado algun email, nombre o apellido'
         redirect_to root_path
