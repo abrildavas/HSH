@@ -21,6 +21,9 @@ class ClientsController < ApplicationController
     # @client.save 
   end
 
+  def search
+      
+  end
 
   def new
   # @client= Client.new

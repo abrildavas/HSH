@@ -2,7 +2,7 @@
 <nav class="navbar navbar-dark bg-dark">
 
   <p class="navbar-brand" href="#">Menú</p>
-  <p class="text-light bg-dark" href="/">Inicio <span class="sr-only">(current)</span></p> 
+  <p class="text-light bg-dark" href="/">Ayuda <span class="sr-only">(current)</span></p> 
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,8 +10,8 @@
 
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a> 
+      <li class="nav-item">
+        <a class="nav-link" href="/">Inicio </a> 
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/residences">Propiedades</a>
@@ -20,8 +20,8 @@
         <a class="nav-link" href="#">Buscar</a>
       </li>
 
-      <li class="nav-item">
-       <a class="nav-link" href="#">Ayuda</a>
+      <li class="nav-item active">
+       <a class="nav-link" href="/ayuda">Ayuda<span class="sr-only">(current)</span></a>
      </li>
    </ul>
  </div>
@@ -42,10 +42,11 @@
 </div> 
 <%else%>
 <%if administrator_signed_in?%>
+
 <nav class="navbar navbar-dark bg-dark">
 
-<a class="navbar-brand" >Menú</a>
-    <h4 class="text-light bg-dark">Clientes <span class="sr-only">(current)</span></h4> <!-- Aqui seccion actual -->
+<a class="navbar-brand" href="#">Administrador</a>
+    <h4 class="text-light bg-dark">Ayuda <span class="sr-only">(current)</span></h4> <!-- Aqui seccion actual -->
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -64,10 +65,10 @@
          <a class="nav-link" href="#">Reservas</a>
       </li>
       <li class="nav-item active">
-         <a class="nav-link" href="/clients">Clientes <span class="sr-only">(current)</span></a>
+         <a class="nav-link" href="/clients">Clientes</a>
       </li>
       <li class="nav-item">
-         <a class="nav-link" href="#">Ayuda</a>
+         <a class="nav-link" href="/ayuda">Ayuda <span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>
