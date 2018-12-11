@@ -61,11 +61,11 @@ end
 
 
 def hacerBasico
-  client=Client.find(params[:id])
+  c=Client.find(params[:id])
   name=c.nombre+" "+c.apellido
-  client.estado="basico"
-  if client.save then 
-    redirect_to client_path(client),notice:"#{name} ahora es cliente básico ."    
+  c.estado="basico"
+  if c.save then 
+    redirect_to client_path(c),notice:"#{name} ahora es cliente básico ."    
 
   end
 

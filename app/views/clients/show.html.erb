@@ -98,7 +98,7 @@
 
 </div>
  <% else%>
-     <%=link_to 'Hacer cliente básico',@client, method: :hacerBasico, class: 'btn btn-outline-primary', data:{ confirm: '¿Realmente querés hacer Premium a éste cliente?'} %>
+     <%=link_to 'Hacer cliente básico', hacerBasico_path(@client), class: 'btn btn-outline-primary', data:{ confirm: '¿Realmente querés hacer Basico a éste cliente?'} %>
   <%end%>
 
 
