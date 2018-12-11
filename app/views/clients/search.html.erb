@@ -37,47 +37,7 @@
 </nav>
 <br>
 <div class="container">
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-   Buscar 
-</button>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    <form>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="textoemail">Buscar por email</span>
-      </div>
-      <input type="email" class="form-control" placeholder="Email" aria-describedby="textoemail">
-      <div class="input-group-append">
-         <span class="btn btn-primary" type="submit" id="botonbuscar1">Buscar</span>
-      </div>
-    </div>
-    </form> 
-        <form>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="textonombre">Buscar por nombre</span>
-      </div>
-      <input type="text" class="form-control" placeholder="Nombre" aria-describedby="textoapellido">
-      <div class="input-group-append">
-         <span class="btn btn-primary" type="submit" id="botonbuscar2">Buscar</span>
-      </div>
-    </div>
-    </form> 
-        <form>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="textoapellido">Buscar por apellido</span>
-      </div>
-      <input type="text" class="form-control" placeholder="Apellido" aria-describedby="textoapellido">
-      <div class="input-group-append">
-         <span class="btn btn-primary" type="submit" id="botonbuscar3">Buscar</span>
-      </div>
-    </div>
-    </form>    
-  </div>
-</div>
-<hr> 
+
 <% Client.all.each do |client|%>
 
 <%=link_to "#{ client.apellido}, #{client.nombre}. ________________________________________________ DNI: #{client.dni}", client_path(client), class: " btn btn-outline-info btn-lg btn-block " %>

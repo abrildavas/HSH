@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'hot_sales/show'
+
+  get 'hot_sales/index'
+
   resources :residences
   resources :weeks
 
@@ -21,7 +25,7 @@ get '/clients', to: 'clients#index', as: "clients"
 post '/clients', to: 'clients#create'
 get '/clients/new', to: 'clients#new', as: "new_client"
 get '/clients/:id/edit', to: 'clients#edit', as: "edit_client"
-get '/client/:id', to: 'clients#show', as: "client"
+get '/clients/:id', to: 'clients#show', as: "client"
 patch '/clients/:id', to: 'clients#update'
 put '/clients/:id', to: 'clients#update'
 delete '/clients/:id', to: 'clients#destroy'
@@ -51,7 +55,8 @@ delete '/administrators/:id', to: 'administrators#destroy'
 
   get 'validarLogIn',to:'administrators#validarLogIn'
 
-
+  get 'ayuda', to: 'clients#ayuda'
+  get 'Contacto', to: 'clients#contacto'
 
   get 'hacerPremium/:id', to:'clients#hacerPremium', as: 'hacerPremium'
   get 'hacerBasico/:id', to:'clients#hacerBasico', as: 'hacerBasico'
