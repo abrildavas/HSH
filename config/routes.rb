@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
 
 
+  get 'auctioneers_lists/index'
+
   get 'auctioneers_lists/show'
 
   resources :residences
   resources :reservations
   resources :bids
-  resources :hot_sales
+
+  resources :auctioneers_lists
 
 
 devise_for :administrators,  path: 'administrators', controllers: {sessions: "administrators/sessions",confirmations: "administrators/confirmations",mailer:"administrators/mailer",password: "administrators/password",registration: "administrators/registration",shared:"administrators/shared",unlocks: "administrators/unlocks"}
@@ -77,6 +80,16 @@ get '/auctions/:id', to: 'auctions#show', as: "auction"
 patch '/auctions/:id', to: 'auctions#update'
 put '/auctions/:id', to: 'auctions#update'
 delete '/auctions/:id', to: 'auctions#destroy'
+
+
+get '/hot_sales', to: 'hot_sales#index', as: "hot_sales"
+post '/hot_sales', to: 'hot_sales#create'
+get '/hot_sales/new/:id', to: 'hot_sales#new', as: "new_hot_sale"
+get '/hot_sales/:id/edit', to: 'hot_sales#edit', as: "edit_hot_sale"
+get '/hot_sales/:id', to: 'hot_sales#show', as: "hot_sale"
+patch '/hot_sales/:id', to: 'hot_sales#update'
+put '/hot_sales/:id', to: 'hot_sales#update'
+delete '/hot_sales/:id', to: 'hot_sales#destroy'
 
 get '/reservarPremium', to:'weeks#reservarPremium', as: "reservar_premium"
 

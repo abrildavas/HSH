@@ -113,7 +113,7 @@
     <%end%>
 
 <%if mostrar==true then %>
-  <button type="button" class="btn btn-outline-secondary btn-lg btn-block">
+<a href=<%=residence_path(residence.id)%> class="btn btn-outline-secondary btn-lg btn-block" role="button"> 
     <table>
         <tr>
             <th>
@@ -134,7 +134,7 @@
     </table>
 
   
-</button>
+</a>
 <%end%>
 <%end%>
 
@@ -168,8 +168,8 @@
 
 <%if mostrar==true then %>
 
-   
-  <button type="button" class="btn btn-outline-success btn-lg btn-block">
+   <a href=<%=auction_path(auction.id)%> class="btn btn-outline-success btn-lg btn-block" role="button"> 
+  
     <table>
         <tr>
             <th>
@@ -193,7 +193,7 @@
     </table>
 
   
-</button>
+</a>
 <%end%>
 <%end%>
 <%end%>
@@ -222,8 +222,8 @@
 
 
 <%if mostrar==true then %>
-
-  <button type="button" class="btn btn-outline-danger btn-lg btn-block">
+<a href=<%=Hot_sale_path(hotsale.id)%> class="btn btn-outline-danger btn-lg btn-block" role="button"> 
+  
     <table>
         <tr>
             <th>
@@ -247,7 +247,7 @@
     </table>
 
   
-</button>
+</a>
 <%end%>
 <%end%>
 <%end%>

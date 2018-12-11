@@ -12,6 +12,7 @@ class AuctionsController < ApplicationController
   def create
 
       @auction=Auction.new(params.require(:auction).permit(:precioBase ,:precioActual,:week_id))
+     @auction.precioActual=@auction.week.residence.precio 
     if @auction.save 
       flash[:success] = 'La subasta se creó exitosamente. Para ver dicha subasta, ingrese la fecha de inicio de la semana a la cual acaba de crearle la subasta. '
 

@@ -24,16 +24,12 @@ class ResidencesController < ApplicationController
    
 
   def create
-<<<<<<< HEAD
+
     @residence=Residence.new(params.require(:residence).permit(:nombre ,:descripcion, :urlImag, :precio, :estado,:pais,:provincia,:localidad, :direccion))
 
     if @residence.save 
       redirect_to "/residences", notice: "se agregó la nueva propiedad"
-=======
-  	@residence=Residence.new(params.require(:residence).permit(:nombre ,:descripcion, :urlImag, :precio, :estado,:pais,:provincia,:localidad, :direccion))
-  	if @residence.save 
-  		redirect_to "/residences", notice: "se agregó la nueva propiedad"
->>>>>>> b8a64646bacb80188166b86c4e406a887e37941c
+
 
       else
         render :new
@@ -61,10 +57,7 @@ class ResidencesController < ApplicationController
     end
     
   end 
-<<<<<<< HEAD
 
-end
-=======
   #Metodos del buscador:
   #----------------------
   #Vista inicial del buscador
@@ -96,4 +89,3 @@ end
   end
 end
 end
->>>>>>> b8a64646bacb80188166b86c4e406a887e37941c

@@ -40,7 +40,8 @@
 
                        <%case @week.estado %>
                        <% when "Subasta" %>
-                        <%= link_to 'Ver Subasta', auction_path, class: 'btn btn-success'%>
+                       <%auction=Auction.where(week_id: @week.id).first%>
+                        <%= link_to 'Ver Subasta', auction_path(auction.id), class: 'btn btn-success'%>
 
                        <%when "Hot sale"%>
                         <%= link_to 'Ver Hot Sale', hot_sale_path, class: 'btn btn-danger'%>

@@ -103,7 +103,7 @@
   <br>
   <br>
   <% Residence.all.each do |residence|%>
-  <button type="button" class="btn btn-outline-secondary btn-lg btn-block">
+  <a href=<%=residence_path(residence.id)%> class="btn btn-outline-secondary btn-lg btn-block" role="button"> 
     <table>
         <tr>
             <th>
@@ -124,9 +124,9 @@
     </table>
 <%end%>
   
-</button>
+</a>
 
 </div>
 
 
-</div>        
+</div>     

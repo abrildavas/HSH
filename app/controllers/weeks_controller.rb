@@ -62,7 +62,7 @@ end
       if (@week.save) && (@week.estado=="Subasta")
         redirect_to new_auction_path(@week.id) and return 
         elsif (@week.save)&& (@week.estado=="Hot sale")
-           redirect_to new_hot_sale_path and return
+           redirect_to new_hot_sale_path(@week.id) and return
         end       
     end
     redirect_to week_dates_path(@week.residence_id)

@@ -6,4 +6,9 @@ class AuctioneersListsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get index" do
+    get auctioneers_lists_index_url
+    assert_response :success
+  end
+
 end

@@ -30,13 +30,14 @@
           </nav>
           <br>
           <br>
+          <div class="container">
           <div class="card-group">
             <% Residence.all.each do |residence|%>
             <div class="shadow p-3 mb-5 bg-white rounded">
               <div class="card">
                 <%= image_tag residence.urlImag ,size: "500x500", class: "card-img-top" %>
                 <div class="card-body">
-                  <h5><a href=<%=residence_path(residence)%> class="card-title"><%residence.nombre%></a></h5>
+                  <h5><a href=<%=residence_path(residence)%> class="card-title"><%=residence.nombre%></a></h5>
                   <p class="card-text"><%=residence.descripcion%></p>
                   <p class="card-text"><small class="text-muted"><%=residence.provincia%>, <%=residence.localidad%></small></p>
 

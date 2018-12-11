@@ -102,7 +102,7 @@
    <% Residence.all.each do |residence|%>
    <%if ActiveSupport::Inflector.transliterate(residence.nombre.downcase).include? (ActiveSupport::Inflector.transliterate(@busqueda.downcase)) then%>
    <%resultados=true%>
-  <button type="button" class="btn btn-outline-secondary btn-lg btn-block">
+  <a href=<%=residence_path(residence.id)%> class="btn btn-outline-secondary btn-lg btn-block" role="button"> 
     <table>
         <tr>
             <th>
@@ -123,7 +123,7 @@
     </table>
 
   
-</button>
+</a>
 <%end%>
 <%end%>
 
@@ -140,7 +140,7 @@
    <%residence=auction.week.residence%>
    <%if ActiveSupport::Inflector.transliterate(residence.nombre.downcase).include? (ActiveSupport::Inflector.transliterate(@busqueda.downcase)) then%>
    <%resultados=true%>
-  <button type="button" class="btn btn-outline-success btn-lg btn-block">
+   <a href=<%=auction_path(auction.id)%> class="btn btn-outline-success btn-lg btn-block" role="button"> 
     <table>
         <tr>
             <th>
@@ -164,7 +164,7 @@
     </table>
 
   
-</button>
+</a>
 <%end%>
 <%end%>
 
@@ -179,7 +179,7 @@
    <%residence=hotsale.residence%>
    <%if ActiveSupport::Inflector.transliterate(residence.nombre.downcase).include? (ActiveSupport::Inflector.transliterate(@busqueda.downcase)) then%>
    <%resultados=true%>
-  <button type="button" class="btn btn-outline-danger btn-lg btn-block">
+   <a href=<%=Hot_sale_path(hotsale.id)%> class="btn btn-outline-danger btn-lg btn-block" role="button"> 
     <table>
         <tr>
             <th>
@@ -203,7 +203,7 @@
     </table>
 
   
-</button>
+</a>
 <%end%>
 <%end%>
 
