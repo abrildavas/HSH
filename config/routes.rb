@@ -70,5 +70,7 @@ get '/buscador',to: 'residences#buscador', as: 'residence_buscador'
 
   get 'residences/:id/dates', to: 'residences#dates', as:'residence_dates' 
 
+  
+
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

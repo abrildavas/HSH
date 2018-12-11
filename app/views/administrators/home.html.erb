@@ -24,6 +24,7 @@
 <h4 class="navbar-brand" >Menú</h4>
     <h4 class="text-light bg-dark" >Inicio <span class="sr-only">(current)</span></h4> <!-- Aqui seccion actual -->
 
+
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -31,6 +32,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
+
         <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a> <!-- Aqui seccion actual -->
       </li>
       <li class="nav-item">
@@ -86,14 +88,27 @@
   <br>
        <br>
 <%end%>
+
 <br>
 <div class="container">
+
        <div class="shadow p-3 mb-5 bg-white rounded">
         <div class="card mb-3">
           
     
   <div class="card-body">
     <h5 class="card-title">HOT SALE</h5>
+    <% if (Week.where(estado: "Hot sale").limit(1).nil?) then r=Week.where(estado: "Hot sale").limit(1).residence_id%>
+    <% residence=Residence.find(r)%>
+  
+    <h3><a href=<%=residence_path(r)%> class="card-title"><%=r.nombre%></a></h3>
+
+<%= link_to residence_path(r) do %>
+          <%= image_tag r.urlImag ,size: "500x500", class: "card-img-top" %>
+              <% end %>
+
+
+  <%end%>
 
     <p class="card-text"><small class="text-muted">--</small></p>
   </div>
