@@ -1,0 +1,36 @@
+<div class="card">
+  	<div class="shadow p-3 mb-5 bg-white rounded">
+  		<div class="card-body">
+  			<h5 class="card-title">Crear Hot Sale </h5>
+  			<p class="card-text">Residencia '<%=@week.residence.nombre%>' en Hot Sale para la semana del:<%=@week.inicio.strftime("%d/%m/%Y")%></p>
+  			<form action= <%=new_hot_sale_path%>>
+          <input type="hidden" name="week_id" value=<%=@week.id%>/>
+         <input type="hidden" name="residence_id" value=<%=@week.residence_id%>/>
+  				<div class="row">
+  					<div class="col-auto">
+  						<div class="input-group mb-3">
+  							<div class="input-group-prepend">
+  								<span class="input-group-text" id="basic-addon1">Ingresar precio:</span>
+  							</div><div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+                <div class="input-group-append">
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div>
+
+  						</div>
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="col">
+  						<button type="submit" class="btn btn-primary">Aceptar</button>
+  						<a href=<%=week_path(@week)%> class="btn btn-secondary">Volver</a>
+  					</div>
+  				</div>
+  			</form>
+  		</div>
+  	</div>
+  </div>	

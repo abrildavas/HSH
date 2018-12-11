@@ -1,2 +1,237 @@
-<h1>Weeks#show</h1>
-<p>Find me in app/views/weeks/show.html.erb</p>
+
+<%if administrator_signed_in?%>
+
+
+<nav class="navbar navbar-dark bg-dark">
+  <h3 class="text-white bg-dark"><%= "Propiedad: '#{@residence.nombre}'"%>
+  <br>
+  Semana:  del <%=@week.inicio.strftime("%d/%m/%Y")%> al <%=@week.fin.strftime("%d/%m/%Y")%></h3>
+</nav>
+
+<br>
+<br>
+
+<!--<div class="card">-->
+  <div class="card-body">
+  	   <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="card">
+
+
+        <%= image_tag "#{@residence.urlImag}" ,size: "500x500", class: "card-img-top" %>
+    <div class="card-body">
+        <div align="right">
+       <%= link_to 'Modificar', edit_residence_path(@residence), class: 'btn btn-outline-primary btn-lg'%>
+       <%= link_to 'Eliminar', @residence, method: :delete, class: 'btn btn-outline-danger btn-lg', data:{ confirm: '¿Estás seguro que querés eliminar esta residencia?'}%>
+       </div>
+       <h4><class="card-title">Descripción:</h4>  
+        <br>
+      <p class="card-text"><%=@residence.descripcion%></p>
+      <p class="card-text"><h4 class="text-muted"> <%=@residence.pais%>, <%=@residence.provincia%>, <%=@residence.localidad%>, <%=@residence.direccion%></h4></p>
+
+              <div class="card-body">
+              	<div class="card">
+              		<div class="card-header">
+              			<h5>Resultado para la semana elegida:</h5>
+              		</div>
+              		<div class="card-body">
+              			<blockquote class="blockquote mb-0">
+              				<p><%="En la semana del " + @week.inicio.strftime("%d/%m/%Y") + " la propiedad está en estado:  " + @week.estado%></p>
+              			   <br>
+
+                       <%case @week.estado %>
+                       <% when "Subasta" %>
+                        <%= link_to 'Ver Subasta', auction_path, class: 'btn btn-success'%>
+
+                       <%when "Hot sale"%>
+                        <%= link_to 'Ver Hot Sale', hot_sale_path, class: 'btn btn-danger'%>
+                     
+                       <% when "Disponible"%>  
+                
+                        <%= link_to 'Ver lista de subastadores', week_path, class: 'btn btn-outline-warning btn-lg'%>
+
+                     
+              				 <%end%>
+              				</blockquote>
+                      <br>
+
+                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModificarEstado"> Cambiar Estado para esta semana</button>
+              			</div>
+                     <div class="card">
+                       <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <%= link_to 'Buscar otra semana', week_dates_path(@residence), class: 'btn btn-light btn-lg btn-block'%>
+            </ol>
+          </nav>
+ 
+        </div>
+
+
+
+              </div>
+            </div>
+    </div>
+
+
+      <div align="right">
+  <a href="/residences" class="btn btn-outline-dark">Volver al listado</a> </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModificarEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Cambiar estado de '<%=@residence.nombre%>' </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Semana del <%=@week.inicio.strftime("%d/%m/%Y")%> 
+      </div>
+
+            <div class="card">
+              
+      <form action=<%=week_estado_path%>>
+          <div class="row">
+            <div class="col-auto">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                   <input type="hidden" name="week_id" value=<%=@week.id%> />
+                  <span class="input-group-text" id="basic-addon1">Elegir estado</span>
+                </div>
+                <select class="form-control" id="estado" name="estado" aria-label="Estado" aria-describedby="basic-addon1">
+                  <option>Disponible</option>
+                  <option>Subasta</option>
+                  <option>Hot sale</option>
+                  <option>No disponible</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+       
+            </div>
+          </div>
+       
+      </div>
+      <div class="modal-footer">
+                       
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+         <button type="submit" class="btn btn-primary">Cambiar estado</button>
+      </div>
+    </div>
+     </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<%else%>
+	<%if client_signed_in? %>
+	
+<nav class="navbar navbar-dark bg-dark">
+  <h3 class="text-white bg-dark"><%= "Propiedad: '#{@residence.nombre}'"%>
+  <br>
+  Semana:  del <%=@week.inicio.strftime("%d/%m/%Y")%> al <%=@week.fin.strftime("%d/%m/%Y")%></h3>
+</nav>
+
+<br>
+<br>
+
+<!--<div class="card">-->
+  <div class="card-body">
+       <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="card">
+
+
+        <%= image_tag "#{@residence.urlImag}" ,size: "500x500", class: "card-img-top" %>
+   
+       <h4><class="card-title">Descripción:</h4>  
+        <br>
+      <p class="card-text"><%=@residence.descripcion%></p>
+      <p class="card-text"><h4 class="text-muted"> <%=@residence.pais%>, <%=@residence.provincia%>, <%=@residence.localidad%>, <%=@residence.direccion%></h4></p>
+
+              <div class="card-body">
+                <div class="card">
+                  <div class="card-header">
+                    <h5>Resultado para la semana elegida:</h5>
+                  </div>
+                  <div class="card-body">
+
+                    <blockquote class="blockquote mb-0">
+
+                      <%if (@week.inicio<=(Date.today + 8.months) && @week.inicio>=(Date.today + 6.months)) then%>
+                      <p><%="En la semana del " + @week.inicio.strftime("%d/%m/%Y") + " la propiedad está en " + @week.estado%></p>
+                           <%case @week.estado %>
+                           <% when "Subasta" %>
+                               <!--<SI NO ES UN SUBASTADOR DE ESTA PROPIEDAD:>-->
+                                <%= link_to 'ingresar a la lista de subastadores', week_path, class: 'btn btn-outline-warning btn-lg'%>
+                                <!--<SI EL CLIENTE YA ESTÁ EN LISTA DE SUBASTADORES PARA ESTA PROPIEDAD:>-->
+                                 <%= link_to 'Ver Subasta', auction_path, class: 'btn btn-success'%>
+                       
+
+                             <%when "Hot sale"%>
+                                 <%= link_to 'Ver Hot Sale', hot_sale_path, class: 'btn btn-danger'%>
+                        
+                     
+                            <% when "Disponible"%>  
+                                  <%if current_client.estado=="premium"%>
+                                       <%= link_to 'Adjudicarme esta residencia', reservar_premium_path, class: 'btn btn-outline-warning btn-lg'%>
+                                  <%end%>
+
+                                    <!--<Si no está en lista de subastadores:>-->
+                                  <%= link_to 'ingresar a la lista de subastadores', week_path, class: 'btn btn-outline-warning btn-lg'%>
+                                    <!--<TODAVÍA NO PUEDE VER LA SUBASTA HASTA QUE NO SE LE HAYA CAMBIADO EL ESTADO A LA SEMANA A 'SUBASTA':>-->
+
+                     
+                             <%end%>
+                    
+                       <%else%>
+                       <p> La semana ingresada debe ser desde la fecha actual, mayor a 6 meses y menor a 8 meses!<br>
+                       Se tiene como minimo 6 meses de anticipación y se pueden visualizar las semanas hasta sólo 2 meses.</p>
+                       <%end%>
+
+                      </blockquote>
+                    
+                      <br>
+                     <div class="card">
+                       <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <%= link_to 'Buscar otra semana', week_dates_path(@residence), class: 'btn btn-light btn-lg btn-block'%>
+            </ol>
+          </nav>
+ 
+        </div>
+
+
+
+              </div>
+            </div>
+    </div>
+
+
+      <div align="right">
+  <a href="/residences" class="btn btn-outline-dark">Volver al listado</a> </div>
+  </div>
+</div>
+</div>
+
+
+
+
+	<%else%>
+	      <h4 class="card-title"> Para ingresar a ésta página, <%=link_to 'inicie sesión', new_client_session_path%></h4>
+	 <%end%>
+
+
+<%end%>
