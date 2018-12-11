@@ -1,11 +1,10 @@
-
-<nav class="navbar navbar-dark bg-dark">
-  <!-- Navbar content -->
-   <h1 class="text-white bg-dark" align="left"> Iniciar Sesión:</h1>
   
-    </nav>
-       <br>
-      <br>
+   <h1 class="text-dark"> Iniciar Sesión</h1>
+<hr>
+
+<br>
+<br>
+<br>
    <div class="container">
 
       <div class="alert alert-warning" role="alert">
@@ -14,8 +13,9 @@
   <hr>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                      <%=f.label :email %> 
                      
-                      <%= f.text_field :email, value: "administrador@hsh.com", class: "form-control", readonly: true%>
+                      <%= f.text_field :email, placeholder: "ejemplo@mail.com", class: "form-control", required: true%>
 
                       <br>
                   <div align="left"> <%= f.label :password,'Ingresar contraseña' %></div>
