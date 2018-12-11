@@ -77,12 +77,16 @@
  <div class="card-body">
        <div class="shadow p-3 mb-5 bg-white rounded">
       <div class="card">
-
+    <% if (@client.numTarj.to_s.length<4) %>
+    <% stri="**** **** **** " + @client.numTarj.to_s  %>
+    <% else %>  
+    <% stri="**** **** **** " + @client.numTarj.to_s.slice(-4..-1) %>
+    <% end %> 
     <div class="card-body">
       <h3><class="card-title"> <%=@client.apellido %>, <%= @client.nombre %></h3> <br> <h5> DNI: <%= @client.dni %>  <br>Fecha de Nacimiento:<%= @client.fechaNac%></h5>
          <h4>Estado de Cuenta: <%=@client.estado%></h4>
       <h4 class="card-text">Mail: <%=@client.email%></h4>
-      <p class="card-text"><h4 class="text-muted"> Tarjeta de Crédito:<%=@client.marcaTarj%> <br>número: <%=@client.numTarj%><br> Fecha de Vencimiento: <%=@client.fechaVencTarj%>. <br> <br> fecha en que se registró en el sitio: <%=@client.fechaReg%>. <br> <br>Créditos disponibles: <%=@client.creditos%></h4></p>
+      <p class="card-text"><h4 class="text-muted"> Tarjeta de Crédito:<%=@client.marcaTarj%> <br>número: <%=stri%><br> Fecha de Vencimiento: <%=@client.fechaVencTarj%>. <br> <br> fecha en que se registró en el sitio: <%=@client.fechaReg%>. <br> <br>Créditos disponibles: <%=@client.creditos%></h4></p>
 
     </div>
 

@@ -1,5 +1,3 @@
-
-
 <%if (administrator_signed_in?) then %>
 
 
@@ -37,17 +35,24 @@
 </nav>
 <br>
 <div class="container">
+ 
+  <% if (@client==nil) then %>
+    <p>El cliente no se encuentra en el sistema</p>
+  <% else %>
+  <% if @client.kind_of?(Array) %>
+    <% @client.each do |cliente| %>
 
-<% Client.all.each do |client|%>
-
-<%=link_to "#{ client.apellido}, #{client.nombre}. ________________________________________________ DNI: #{client.dni}", client_path(client), class: " btn btn-outline-info btn-lg btn-block " %>
+    <%=link_to "#{ cliente.apellido}, #{cliente.nombre}. ________________________________________________ DNI: #{cliente.dni}", client_path(cliente), class: " btn btn-outline-info btn-lg btn-block " %>
 
      <!-- <a href=<%= client_path(client)%> class="btn btn-outline-dark btn-lg btn-block"> 
         <%= client.apellido %>, <%= client.nombre %> -  DNI: <%= client.dni %></a> 
       -->
-
-      <hr>
-
-      <%end%> 
+    <%end%>
+  <% else %>
+  <%=link_to "#{ @client.apellido}, #{@client.nombre}. ________________________________________________ DNI: #{@client.dni}", client_path(@client), class: " btn btn-outline-info btn-lg btn-block " %>
+  <%end%>  
+<%end%>
+<br>
+<a href="/clients" class="btn btn-outline-dark">Volver al listado</a>
 </div>
 <%end%>

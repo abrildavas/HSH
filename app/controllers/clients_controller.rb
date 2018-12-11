@@ -22,7 +22,19 @@ class ClientsController < ApplicationController
   end
 
   def search
-      
+      if params.has_key?(:email)
+        c=params[:email]
+        @client=Client.find_by(email: c)
+      elsif params.has_key?(:nombre)
+        c=params[:nombre]
+        @client=Client.find_by("nombre ILIKE ?", "%#{c}%")
+      elsif params.has_key?(:apellido)
+        c=params[:apellido]
+        @client=Client.find_by("apellido ILIKE ?", "%#{c}%")
+      else
+        flash[:error]='Por alguna razon no se ha insertado algun email, nombre o apellido'
+        redirect_to root_path
+      end
   end
 
   def new

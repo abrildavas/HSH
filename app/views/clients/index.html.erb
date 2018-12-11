@@ -1,8 +1,4 @@
-
-
 <%if (administrator_signed_in?) then %>
-
-
 <nav class="navbar navbar-dark bg-dark">
 
   <a class="navbar-brand" href="#">Administrador</a>
@@ -37,45 +33,45 @@
 </nav>
 <br>
 <div class="container">
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
    Buscar 
-</button>
-<div class="collapse" id="collapseExample">
+ </button>
+ <div class="collapse" id="collapseExample">
   <div class="card card-body">
-    <form>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="textoemail">Buscar por email</span>
-      </div>
-      <input type="email" class="form-control" placeholder="Email" aria-describedby="textoemail">
-      <div class="input-group-append">
-         <span class="btn btn-primary" type="submit" id="botonbuscar1">Buscar</span>
-      </div>
-    </div>
-    </form> 
-        <form>
+    <form action=<%= search_client_path %>>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="textoemail">Buscar por email</span>
+        </div>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" aria-describedby="textoemail" required>
+        <div class="input-group-append">
+         <button class="btn btn-primary" type="submit" id="botonbuscar1">Buscar</button>
+       </div>
+     </div>
+   </form> 
+   <form action=<%= search_client_path %>>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="textonombre">Buscar por nombre</span>
       </div>
-      <input type="text" class="form-control" placeholder="Nombre" aria-describedby="textoapellido">
+      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" aria-describedby="textonombre" required>
       <div class="input-group-append">
-         <span class="btn btn-primary" type="submit" id="botonbuscar2">Buscar</span>
-      </div>
+       <button class="btn btn-primary" type="submit" id="botonbuscar2">Buscar</button>
+     </div>
+   </div>
+ </form> 
+ <form action=<%= search_client_path %>>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="textoapellido">Buscar por apellido</span>
     </div>
-    </form> 
-        <form>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="textoapellido">Buscar por apellido</span>
-      </div>
-      <input type="text" class="form-control" placeholder="Apellido" aria-describedby="textoapellido">
-      <div class="input-group-append">
-         <span class="btn btn-primary" type="submit" id="botonbuscar3">Buscar</span>
-      </div>
-    </div>
-    </form>    
-  </div>
+    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" aria-describedby="textoapellido" required>
+    <div class="input-group-append">
+     <button class="btn btn-primary" type="submit" id="botonbuscar3">Buscar</button>
+   </div>
+ </div>
+</form>    
+</div>
 </div>
 <hr> 
 <% Client.all.each do |client|%>
@@ -89,5 +85,5 @@
       <hr>
 
       <%end%> 
-</div>
-<%end%>
+    </div>
+    <%end%>

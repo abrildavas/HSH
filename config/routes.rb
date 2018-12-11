@@ -29,6 +29,7 @@ get '/clients/:id', to: 'clients#show', as: "client"
 patch '/clients/:id', to: 'clients#update'
 put '/clients/:id', to: 'clients#update'
 delete '/clients/:id', to: 'clients#destroy'
+get '/clientsearch', to: 'clients#search', as: "search_client"
 
 
 
