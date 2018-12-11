@@ -7,4 +7,5 @@ class Client < ApplicationRecord
 validates :dni, uniqueness: true
    	has_many :bids
 	has_many :reservations
+	validates :dni, length: { minimum: 0, maximum: 8 }
 end

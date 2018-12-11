@@ -5,14 +5,15 @@ class AdministratorsController < ApplicationController
     if client_signed_in? then
       @client=current_client
     end
+ end
+ def buscador
+if !(administrator_signed_in?) then
+  redirect_to "/"
+end
+     end
 
-        
-
-    
-
-
-  end
-
+ 
+#Version anterior a DEVISE -
   def validarLogIn
 
     if (params[:nombreDeUsuario].present? && params[:clave].present?) 

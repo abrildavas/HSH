@@ -14,7 +14,6 @@ devise_for :clients, path: "clients", controllers: {sessions: "clients/sessions"
 
 root 'administrators#home'
 
-
 get '/clients', to: 'clients#index', as: "clients"
 post '/clients', to: 'clients#create'
 get '/clients/new', to: 'clients#new', as: "new_client"
@@ -54,6 +53,11 @@ delete '/administrators/:id', to: 'administrators#destroy'
   get 'hacerPremium/:id', to:'clients#hacerPremium', as: 'hacerPremium'
   get 'hacerBasico/:id', to:'clients#hacerBasico', as: 'hacerBasico'
 
+
+get '/buscador',to: 'residences#buscador', as: 'residence_buscador'
+  get '/searchAdmin', to: 'residences#searchAdmin', as: 'residence_search_admin'
+  get '/searchClient', to: 'residences#searchClient', as: 'residence_search_client'
+  
 
 
 
