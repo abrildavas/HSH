@@ -179,7 +179,8 @@
                                <!--<SI NO ES UN SUBASTADOR DE ESTA PROPIEDAD:>-->
                                 <%= link_to 'ingresar a la lista de subastadores', week_path, class: 'btn btn-outline-warning btn-lg'%>
                                 <!--<SI EL CLIENTE YA ESTÁ EN LISTA DE SUBASTADORES PARA ESTA PROPIEDAD:>-->
-                                 <%= link_to 'Ver Subasta', auction_path, class: 'btn btn-success'%>
+                                <%auction=Auction.where(week_id: @week.id).first%>
+                                <%= link_to 'Ver Subasta', auction_path(auction.id), class: 'btn btn-success'%>
                        
 
                              <%when "Hot sale"%>
