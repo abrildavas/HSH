@@ -40,8 +40,13 @@
 
       <%end%>
         </div>     
+        <% if client_signed_in? then %>
         <a href='#' class="btn btn-success btn-lg btn-block"> ¡Ofertar!</a> 
      </div>
+        <%else%>
+          <a href='#' class="btn btn-success btn-lg btn-block"> Finalizar Subasta</a>
+        <%end%>
+
     </div>
     <br>
       <div align="right">
