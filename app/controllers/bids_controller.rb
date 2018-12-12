@@ -15,16 +15,26 @@ class BidsController < ApplicationController
   end
 
   def create
-
-    @bid=Bid.new(params.require(:bid).permit(:valor ,:fecha, :client_id,:auction_id))
-
+    @auction=Auction.find(params[:auction_id])
+    if params[:valor].to_i <= @auction.precioActual
+        flash[:danger]="Ingrese un precio mayor al precio actual para hacer una puja"
+        redirect_back fallback_location: root_path    
+    else
+    @bid=Bid.new
+    @bid.valor=params[:valor]
+    @bid.fecha=Time.now
+    @bid.client_id=params[:client_id]
+    @bid.auction_id=params[:auction_id]
     if @bid.save 
-      redirect_to "#", notice: "se agregó la nueva oferta"
-
+      @auction.precioActual=params[:valor]
+      @auction.save
+      flash[:success]="Se agregó la nueva oferta"
+      redirect_to root_path
       else
-        render :new
-      end
-
+        flash[:danger]="error"
+        redirect_back fallback_location: root_path
+      end    
+    end
   end
 
   def new

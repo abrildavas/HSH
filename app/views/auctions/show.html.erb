@@ -1,7 +1,6 @@
 <nav class="navbar navbar-dark bg-dark">
   <h3 class="text-white bg-dark"><%= "Subasta de la Propiedad: #{@auction.week.residence.nombre}"%></h3>
 </nav>
-
 <br>
 <br>
 
@@ -31,7 +30,7 @@
       <% @auction.bids.each do |bid| %>
       <div class="shadow p-3 mb-5 bg-white rounded">
         
-            <h5 class="text-muted"> - Valor <%=bid.valor%>, fecha:<%=bid.fecha%> </h4>
+            <h5 class="text-muted"> - Valor <%=bid.valor%>, fecha:<%=bid.created_at%> </h4>
              <br>
              <%end%>
         <%else%>
@@ -41,7 +40,36 @@
       <%end%>
         </div>     
         <% if client_signed_in? then %>
-        <a href='#' class="btn btn-success btn-lg btn-block"> ¡Ofertar!</a> 
+<!-- Button trigger modal -->
+<button type="button" class="btn-success btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">
+  ¡Ofertar!
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Insertar precio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form action="/crearbid">
+      <div class="modal-body">
+        <input type="hidden" name="client_id" value=<%=current_client.id%> />
+        <input type="hidden" name="auction_id" value=<%=@auction.id%> />
+        <input type="number" class="form-control" name="valor" placeholder="Precio" min="0" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Ofertar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
      </div>
         <%else%>
           <a href='#' class="btn btn-success btn-lg btn-block"> Finalizar Subasta</a>

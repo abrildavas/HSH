@@ -73,7 +73,7 @@ get '/buscador',to: 'residences#buscador', as: 'residence_buscador'
   get 'estado/', to: 'weeks#modificarEstado', as:'week_estado'
 
 
-
+get '/crearbid', to: 'bids#create'
 get '/auctions', to: 'auctions#index', as: "auctions"
 post '/auctions', to: 'auctions#create'
 get '/auctions/new/:id', to: 'auctions#new', as: "new_auction"
