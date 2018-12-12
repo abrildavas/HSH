@@ -58,6 +58,14 @@ end
     end
     
   end 
+  
+    def reservar_hotsale
+    @hotsale=HotSale.find(params[:id])
+    @hotsale.week.estado="No Disponible"
+    @reserva=Reservation.create(precio: @hotsale.precio, fecha: Date.today, fechaInicio: @hotsale.week.inicio, fechaFin: @hotsale.week.fin, client_id: params[:client_id] )
+    destroy(@HotSale.id)
+    
+end
 
 
 end

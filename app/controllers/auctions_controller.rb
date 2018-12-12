@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  
+    
 
   def index
     @auctions=Auction.all
@@ -10,10 +10,11 @@ class AuctionsController < ApplicationController
   end
 
   def create
-     @auction=Auction.new(params.require(:auction).permit(:precioBase ,:precioActual,:week_id))
-     @auction.precioActual=@auction.precioBase
+
+      @auction=Auction.new(params.require(:auction).permit(:precioBase ,:precioActual,:week_id))
+     @auction.precioActual=@auction.week.residence.precio 
     if @auction.save 
-      flash[:success] = 'La subasta se creó exitosamente. Para ver dicha subasta, ingrese aquí en el calendario la fecha de inicio de la semana a la cual acaba de crearle la subasta. '
+      flash[:success] = 'La subasta se creó exitosamente. Para ver dicha subasta, ingrese la fecha de inicio de la semana a la cual acaba de crearle la subasta. '
 
        redirect_to week_dates_path(Week.find(@auction.week_id).residence_id)
 
@@ -38,5 +39,56 @@ class AuctionsController < ApplicationController
      @auction.destroy
   end
 
+  def finishAuction
+    @subasta=Auction.find(params[:id])
+    @vacio=false
+    @clienteGanador=nil
 
+    if (@subasta.bids.first.nil?)
+      @subasta.week.estado="Disponible"
+      @subasta.week.save
+      #Muestro en un modal
+      @vacio=true      
+  else # hay pujas...
+  
+  pujas=@subasta.bids.all.order('valor DESC')
+
+  if (pujas.first.client.creditos>0) then 
+    #Primer Mejor Postor Gana la subasta
+    #Se Crea la reserva:
+    
+    @reserva=Reservation.create(precio: @subasta.precioActual, fecha: Date.today, fechaInicio: @subasta.week.fechaInicio, fechaFin: @subasta.week.fechaFin, client_id: pujas.first.client.id)
+    @subasta.week.estado="No Disponible"
+    @subasta.week.save
+    @clienteGanador=Client.find(pujas.first.client.id)
+
+  else
+  
+  
+  long=pujas.count
+  ganador=false
+  i=1
+  while  (!ganador && i<long)
+    if (pujas[i].client.creditos>0)
+      ganador=true
+      iganador=i
+    else
+      i=i+1
+    end
+    
+  end
+  if (!ganador) then
+      @subasta.week.estado="Disponible"
+      @subasta.week.save
+  else
+    @reserva=Reservation.create(precio: pujas[iganador].valor, fecha: Date.today, fechaInicio: @subasta.week.fechaInicio, fechaFin: @subasta.week.fechaFin, client_id: pujas[iganador].client.id)
+   @subasta.week.estado="No Disponible"
+      @subasta.week.save
+      @clienteGanador=Client.find(pujas[iganador].client.id)
+  end
+end
+
+end # final del else si hay pujas
+   Auction.find(params[:id]).destroy
+  end
 end

@@ -80,7 +80,7 @@
       </li>
 
       <li class="nav-item">
-         <a class="nav-link" href="#">Ayuda</a>
+         <a class="nav-link" href="/ayuda">Ayuda</a>
       </li>
     </ul>
   </div>
@@ -106,17 +106,7 @@
     
   <div class="card-body">
     <h5 class="card-title">HOT SALE</h5>
-    <% if (Week.where(estado: "Hot sale").limit(1).nil?) then r=Week.where(estado: "Hot sale").limit(1).residence_id%>
-    <% residence=Residence.find(r)%>
   
-    <h3><a href=<%=residence_path(r)%> class="card-title"><%=r.nombre%></a></h3>
-
-<%= link_to residence_path(r) do %>
-          <%= image_tag r.urlImag ,size: "500x500", class: "card-img-top" %>
-              <% end %>
-
-
-  <%end%>
 
     <p class="card-text"><small class="text-muted">--</small></p>
   </div>

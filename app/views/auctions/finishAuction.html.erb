@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header">
+    Terminar Subasta
+  </div>
+  <div class="card-body">
+          <p>La subasta de <%=Residence.find(@subasta.week.residence_id).nombre%> para la semana: <%=@subasta.week.inicio%> - <%=@subasta.week.fin%>, fue terminada satisfactoriamente. Estos son los resultados:</p>
+    <h5 class="card-title"></h5>
+    <p class="card-text"> <%if @vacio==true then%>
+        <h4>  La subasta no tenía pujas.  Estado final de Residencia: Disponible</h4>
+        <%elsif (!@clienteGanador.nil?) then%>
+        <h4>Ganador: <%=@clienteGanador.nombre%>, <%=@clienteGanador.apellido%></h4>
+        <h4> Precio: <%@reserva.precio%></h4>
+        <%else%>
+        <h4> Ninguno de los clientes tenia creditos para efectuar la reserva obtenida de la subasta, estado final de residencia: Disponible</h4>
+        <%end%></p>
+        <%=link_to 'Volver', :back, class: "btn btn-primary"%>
+    
+  </div>
+</div>

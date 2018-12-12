@@ -48,6 +48,8 @@ class ResidencesController < ApplicationController
     end
   end
 
+
+
   def update
     @residence=Residence.find(params[:id])
     if @residence.update(params.require(:residence).permit(:nombre, :descripcion, :urlImag,:precio, :pais, :provincia, :localidad, :direccion))
@@ -66,7 +68,8 @@ class ResidencesController < ApplicationController
 if (!(administrator_signed_in?) && (!(client_signed_in?))) then
   redirect_to "/"
 end
-     end
+end
+
 #El cliente ya presiono en buscar
   def searchClient
     if !(client_signed_in?) then
@@ -76,14 +79,15 @@ else
   if !params[:criterio].blank?
     @opcion=params[:criterio]
   end
+
   end
-     
-  end
+end
 
 
 
 #El administrador ya presiono en buscar
-  def searchAdmin
+def searchAdmin
+
   if !(administrator_signed_in?) then
   redirect_to "/"
   else
@@ -91,6 +95,9 @@ else
   if !params[:criterio].blank?
     @opcion=params[:criterio]
   end
-  end
 end
+end
+
+
+
 end

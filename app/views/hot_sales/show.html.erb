@@ -29,7 +29,8 @@
       
          
         <% if client_signed_in? then %>
-        <a href='#' class="btn btn-danger btn-lg btn-block"> ¡Lo quiero</a> 
+
+                 <%=link_to '¡Lo Quiero!',reservar_hotsale(hotsale.id), class: "btn btn-danger btn-lg btn-block", data: {confirm: "¿Está seguro que desea realizar la reserva?"}%>
      </div>
         <%else%>
           <a href='#' class="btn btn-outline-dark btn-lg btn-block"> Finalizar Hot Sale</a>

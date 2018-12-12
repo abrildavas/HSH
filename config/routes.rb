@@ -82,6 +82,7 @@ get '/auctions/:id', to: 'auctions#show', as: "auction"
 patch '/auctions/:id', to: 'auctions#update'
 put '/auctions/:id', to: 'auctions#update'
 delete '/auctions/:id', to: 'auctions#destroy'
+get '/finishAuction/:id',to: 'auctions#finishAuction', as: "finish_auction" 
 
 
 get '/hot_sales', to: 'hot_sales#index', as: "hot_sales"
@@ -92,6 +93,8 @@ get '/hot_sales/:id', to: 'hot_sales#show', as: "hot_sale"
 patch '/hot_sales/:id', to: 'hot_sales#update'
 put '/hot_sales/:id', to: 'hot_sales#update'
 delete '/hot_sales/:id', to: 'hot_sales#destroy'
+get '/eliminar/:id', to: 'hot_sales#elminiar', as:"eliminar_hotsale"
+get '/reservarHotsale/:id', to: 'hot_sales#reservarHotsale',as: "reservar_hotsale"
 
 get '/reservarPremium', to:'weeks#reservarPremium', as: "reservar_premium"
 
