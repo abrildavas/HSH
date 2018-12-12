@@ -1,17 +1,13 @@
-
-
 <%if (administrator_signed_in?) then %>
-
-
 <nav class="navbar navbar-dark bg-dark">
 
-<a class="navbar-brand" href="#">Administrador</a>
-    <h4 class="text-light bg-dark">Clientes <span class="sr-only">(current)</span></h4> <!-- Aqui seccion actual -->
+  <a class="navbar-brand" href="#">Administrador</a>
+  <h4 class="text-light bg-dark">Clientes <span class="sr-only">(current)</span></h4> <!-- Aqui seccion actual -->
 
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
- 
+
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -24,43 +20,81 @@
         <a class="nav-link" href="/buscador">Buscar</a>
       </li>
       <li class="nav-item">
-         <a class="nav-link" href="#">Reservas</a>
-      </li>
-      <li class="nav-item active">
-         <a class="nav-link" href="/clients">Clientes <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-         <a class="nav-link" href="#">Ayuda</a>
-      </li>
-    </ul>
-  </div>
-  </nav>
-  <br>
+       <a class="nav-link" href="#">Reservas</a>
+     </li>
+     <li class="nav-item active">
+       <a class="nav-link" href="/clients">Clientes <span class="sr-only">(current)</span></a>
+     </li>
+     <li class="nav-item">
+       <a class="nav-link" href="/ayuda">Ayuda</a>
+     </li>
+   </ul>
+ </div>
+</nav>
+<br>
+<div class="container">
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+   Buscar 
+ </button>
+ <div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <form action=<%= search_client_path %>>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="textoemail">Buscar por email</span>
+        </div>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" aria-describedby="textoemail" required>
+        <div class="input-group-append">
+         <button class="btn btn-primary" type="submit" id="botonbuscar1">Buscar</button>
+       </div>
+     </div>
+   </form> 
+   <form action=<%= search_client_path %>>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="textonombre">Buscar por nombre</span>
+      </div>
+      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" aria-describedby="textonombre" required>
+      <div class="input-group-append">
+       <button class="btn btn-primary" type="submit" id="botonbuscar2">Buscar</button>
+     </div>
+   </div>
+ </form> 
+ <form action=<%= search_client_path %>>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="textoapellido">Buscar por apellido</span>
+    </div>
+    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" aria-describedby="textoapellido" required>
+    <div class="input-group-append">
+     <button class="btn btn-primary" type="submit" id="botonbuscar3">Buscar</button>
+   </div>
+ </div>
+</form>
+ <form action=<%= search_client_path %>>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="textodni">Buscar por DNI</span>
+    </div>
+    <input type="number" class="form-control" id="dni" name="dni" placeholder="DNI" aria-describedby="textodni" required>
+    <div class="input-group-append">
+     <button class="btn btn-primary" type="submit" id="botonbuscar4">Buscar</button>
+   </div>
+ </div>
+</form>     
+</div>
+</div>
+<hr> 
+<% Client.all.each do |client|%>
 
-
-
-
-
-    
-      
-      <% Client.all.each do |client|%>
-       
-          <%=link_to "#{ client.apellido}, #{client.nombre}. ________________________________________________ DNI: #{client.dni}", client_path(client), class: " btn btn-outline-info btn-lg btn-block " %>
+<%=link_to "#{ client.apellido}, #{client.nombre}. ________________________________________________ DNI: #{client.dni}", client_path(client), class: " btn btn-outline-info btn-lg btn-block " %>
 
      <!-- <a href=<%= client_path(client)%> class="btn btn-outline-dark btn-lg btn-block"> 
         <%= client.apellido %>, <%= client.nombre %> -  DNI: <%= client.dni %></a> 
       -->
-         
-          <hr>
 
-      <%end%>
-  </div>
-      
+      <hr>
 
-
-
-</div>
-
-<%end%>
-
-
+      <%end%> 
+    </div>
+    <%end%>
