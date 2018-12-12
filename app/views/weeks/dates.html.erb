@@ -1,0 +1,21 @@
+<div class="jumbotron">
+  <h1 class="display-4">Calendario para '<%=@residence.nombre%>'</h1>
+  <h3 class="lead"> Ingrese la semana de su interés para visualizar el estado de la residencia en la misma. </h3>
+  <hr class="my-4">
+  <form action=<%=week_path%>>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <input type="hidden" name="residence_id" value=<%=@residence.id%> />
+                      <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
+                    </div>
+                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" aria-describedby="basic-addon1" required>
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-outline-primary">Ver calendario</button>
+                    </div>
+                  </div>
+                </form>
+    <h6>(La fecha de inicio siempre comienza desde un lunes)</h6>
+    <hr class="my-4">
+  <a class="btn btn-primary btn-lg" href=<%=residence_path(@residence)%> role="button">atrás</a>
+</div>
+

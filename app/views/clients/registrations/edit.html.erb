@@ -1,43 +1,157 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%if client_signed_in? %>
+<nav class="navbar navbar-dark bg-dark">
+  <p class="navbar-brand" href="#">Menú</p>
+  <p class="text-light bg-dark" href="/residences">Propiedades <span class="sr-only">(current)</span></p> <!-- Aqui seccion actual -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="/residences">Propiedades <span class="sr-only">(current)</span></a><!-- Aqui seccion actual -->
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Buscar</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Ayuda</a>
+    </li>
+  </ul>
+</div>
+</nav>
+<%else%>
+<%if administrator_signed_in?%>
+<nav class="navbar navbar-dark bg-dark">
+  <h4 class="navbar-brand" >Menú</h4>
+  <h4 class="text-light bg-dark">Propiedades <span class="sr-only">(current)
+  </span></h4> <!-- Aqui seccion actual -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Inicio </a> 
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/residences">Propiedades <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Buscar</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Reservas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/clients">Clientes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Ayuda</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<%end%> 
+<%end%> 
+<div class="container">
+<br>
+<h1 class="text-dark" align="left">Editar Perfil</h1>
+<hr>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
+  
+ <div class="row">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    
+  <div class="col">
+   <%= f.label :nombre %>
+    <%= f.text_field :nombre, placeholder: "Ingrese su nombre", class: "form-control" ,required: true%>
+    </div>
+    <div class="col">
+
+    <%= f.label :apellido %>
+    <%= f.text_field :apellido, placeholder: "Ingrese su apellido", class: "form-control",required: true%>
+  </div>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+   <br>
+<div class="row">
+  <div class="col">
+     <%= f.label :fechaNac, 'Fecha de Nacimiento' %>
+     <%= f.text_field :fechaNac,type: 'date', class: "form-control",required: true%>
+   </div>
+    <div class="col">
+    <%= f.label :DNI %>
+    <%= f.number_field :dni, placeholder: "Ingrese su documento", class: "form-control",required: true%>
+  </div>
+    
+  </div>
+  <br>
+  
 
+  <div class="row">  
+     <div class="col">
+     <%= f.label :marcaTarj, 'Marca de Tarjeta' %>
+     <%= f.text_field :marcaTarj, class: "form-control",required: true%>
+   </div>
+     <div class="col">
+     <%= f.label :numTarj, 'Número de Tarjeta' %>
+     <%= f.number_field :numTarj, class: "form-control",required: true%>
+   </div>
+       <div class="col">
+     <%= f.label :fechaVencTarj, 'Fecha de Vencimiento' %>
+     <%= f.text_field :fechaVencTarj,type: 'date', class: "form-control",required: true%>
+   </div>
+   </div>
+   <br>
+
+  <h5 class="text-dark">Cuenta de HSH: </h5>
+  <hr>
+   <div class="row">
+    <div class="col">  
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.label :email, 'Email'  %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Ingrese su email", class: "form-control" %>
+    <br>
+  </div>
+     </div>
+   </div>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Falta confirmacion de: <%= resource.unconfirmed_email %></div>
+  <% end %>
+     <div class="row">
+     <div class="col">
+  <div class="field">
+    <%= f.label :password, 'Contraseña' %> <br />
+    <%= f.password_field :password, placeholder: "Ingrese su contraseña nueva", class: "form-control",required: true%>
     <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %> caracteres minimo</em>
     <% end %>
   </div>
+     <br>
+   </div>
+ </div>
+   <div class="row">
+    <div class="col">
+  <div class="field">
+    <%= f.label :password_confirmation, 'Confirmar contraseña' %><br />
+    <%= f.password_field :password_confirmation, placeholder: "Ingrese su contraseña nueva de vuelta", class: "form-control",required: true%>
+  </div>
+  <br>
+   </div>
+ </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :current_password, 'Contraseña actual' %> <br />
+    <%= f.password_field :current_password, placeholder: "introduzca la contraseña anterior", class: "form-control",required: true  %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
+  <br />
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Guardar Edicion", class: "btn btn-primary" %>
+    <%= link_to "Cancelar", root_path , class: "btn btn-warning"%>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

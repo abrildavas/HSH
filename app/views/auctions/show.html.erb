@@ -1,2 +1,59 @@
-<h1>Auctions#show</h1>
-<p>Find me in app/views/auctions/show.html.erb</p>
+<nav class="navbar navbar-dark bg-dark">
+  <h3 class="text-white bg-dark"><%= "Subasta de la Propiedad: #{@auction.week.residence.nombre}"%></h3>
+</nav>
+
+<br>
+<br>
+
+<!--<div class="card">-->
+  <div class="card-body">
+  	   <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="card">
+
+
+        <%= image_tag "#{@auction.week.residence.urlImag}" ,size: "450x450", class: "card-img-top" %>
+    <div class="card-body">
+      <p class="card-text"><h4 class="text-muted"> <%=@auction.week.residence.pais%>, <%=@auction.week.residence.provincia%>, <%=@auction.week.residence.localidad%>, <%=@auction.week.residence.direccion%></h4></p>
+    </div>
+    <br>
+     <h4 class="p-3 mb-2 bg-light text-dark">  Precio Base $: <%=@auction.precioBase%> </h4>
+    <div align="center">
+
+      <h3><class="card-text">   Subasta! -<%=@auction.week.residence.nombre%> en la semana del: <%=@auction.week.inicio.strftime("%d/%m/%Y")%> al <%=@auction.week.fin.strftime("%d/%m/%Y")%></h3>
+
+
+      <h4 class="text-success">Precio Actual $:<%=@auction.precioActual%> </h4>
+      <br>
+      
+         <div class="shadow p-3 mb-5 bg-white rounded">
+          <h4  class="text-muted" align= "left"> Pujas: </h4>
+      <%if !(@auction.bids.first.nil? )%>
+      <% @auction.bids.each do |bid| %>
+      <div class="shadow p-3 mb-5 bg-white rounded">
+        
+            <h5 class="text-muted"> - Valor <%=bid.valor%>, fecha:<%=bid.fecha%> </h4>
+             <br>
+             <%end%>
+        <%else%>
+           <h5 class="text-muted"> No hay ninguna todavía </h5>
+          
+
+      <%end%>
+        </div>     
+        <% if client_signed_in? then %>
+        <a href='#' class="btn btn-success btn-lg btn-block"> ¡Ofertar!</a> 
+     </div>
+        <%else%>
+          <a href='#' class="btn btn-success btn-lg btn-block"> Finalizar Subasta</a>
+        <%end%>
+
+    </div>
+    <br>
+      <div align="right">
+  <a href="/residences" class="btn btn-outline-dark">Volver al listado de Residencias</a> </div>
+
+
+  </div>
+</div>
+
+</div>

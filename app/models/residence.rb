@@ -3,7 +3,8 @@ class Residence < ApplicationRecord
 	has_many :auctions, dependent: :destroy
 	has_many :reservations
 	has_many :weeks
-
-
-
+	has_many :hot_sales, dependent: :destroy
 end
+
+
+ 

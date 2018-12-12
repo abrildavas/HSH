@@ -1,18 +1,22 @@
 class AdministratorsController < ApplicationController
 
   def home
-    render :layout => false
+    render layout: false
     if client_signed_in? then
       @client=current_client
+      if (@client.updated_at.year < DateTime.now.year) 
+        @client.estado="basico"
+      end 
     end
+ end
+ def buscador
+if !(administrator_signed_in?) then
+  redirect_to "/"
+end
+     end
 
-        
-
-    
-
-
-  end
-
+ 
+#Version anterior a DEVISE -
   def validarLogIn
 
     if (params[:nombreDeUsuario].present? && params[:clave].present?) 
