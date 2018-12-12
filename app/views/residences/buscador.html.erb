@@ -38,8 +38,12 @@
 
  <div class="container">
    
-
+<%if administrator_signed_in?then %>
 <form accept-charset="UTF-8" action="/searchAdmin" method="get">
+<%elsif client_signed_in? then %>
+<form accept-charset="UTF-8" action="/searchClient" method="get">
+<%end%>
+
   <input name="utf8" type="hidden" value="&#x2713;" />
 
             <div class="form-group row">
@@ -94,8 +98,7 @@
 
 </form>
 
-
-<div class="container">
+<%if administrator_signed_in?%>
   
   <br>
   <hr>
@@ -126,7 +129,55 @@
   
 </a>
 
-</div>
+
+<%elsif client_signed_in? %>
+
+<br>
+  <hr>
+  <p> Resultados:</p>
+  <br>
+  <br>
+  <%resultados=false%>
+  <% Residence.all.each do |residence|%>
+ <%mostrar=false%>
+
+    <%residence.weeks.each do |week| %>
+    <% if ((week.inicio>= Date.today+6.month) && (week.inicio<=Date.today+8.month-1.week)) then %>
+
+    <% if ((week.estado=="Hot sale") || (week.estado=="Subasta") || (week.estado=="Disponible")) then mostrar=true %>
+       <%resultados=true%>
+     <%end%>
+    <%end%>
+    <%end%>
+
+<%if mostrar==true then %>
+
+   <a href=<%=residence_path(residence.id)%> class="btn btn-outline-secondary btn-lg btn-block" role="button"> 
+    <table>
+        <tr>
+            <th>
+                 <img src=<%=residence.urlImag%> width="200" height="200">
+            </th>
+            <th>
+                 <center> <h3> <%=residence.nombre %></h3> </center>
+        <br>
+        <p class="text-right">
+         <p class="font-italic"> <small><%= truncate(residence.descripcion,length: 100, separator: ' ') %> </small></p>
+         </p>
+        <br>
+        <p ><small ><%=residence.provincia%>, <%=residence.localidad%></small></p>
+            </th>
+        
+        </tr>
+        
+    </table>
+<%end%>
+  
+</a>
+<%end%>
+
+<%end%>
+
 
 
 </div>     

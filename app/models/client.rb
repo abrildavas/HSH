@@ -8,5 +8,5 @@ validates :dni, uniqueness: true
    	has_many :bids
 	has_many :reservations
 	validates :dni, length: { minimum: 0, maximum: 8 }
-	belongs_to :auctioneer_list
+	
 end

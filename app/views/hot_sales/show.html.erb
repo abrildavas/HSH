@@ -1,2 +1,50 @@
-<h1>HotSales#show</h1>
-<p>Find me in app/views/hot_sales/show.html.erb</p>
+<nav class="navbar navbar-dark bg-dark">
+  <h3 class="text-white bg-dark"><%= "Hot Sale de la Propiedad: #{@hot_sale.week.residence.nombre}"%></h3>
+</nav>
+
+<br>
+<br>
+
+<!--<div class="card">-->
+  <div class="card-body">
+  	   <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="card">
+
+
+        <%= image_tag "#{@hot_sale.week.residence.urlImag}" ,size: "450x450", class: "card-img-top" %>
+    <div class="card-body">
+      <p class="card-text"><h4 class="text-muted"> <%=@hot_sale.week.residence.pais%>, <%=@hot_sale.week.residence.provincia%>, <%=@hot_sale.week.residence.localidad%>, <%=@hot_sale.week.residence.direccion%></h4></p>
+    </div>
+    <br>
+     <h4 class="p-3 mb-2 bg-light text-dark">  Precio normal $: <%=@hot_sale.residence.precio%> </h4>
+
+    <div align="center">
+      <h4 class="text-danger">Precio Actual $:<%=@hot_sale.precio%> </h4>
+
+      <h3><class="card-text"> -<%=@hot_sale.residence.nombre%> en Hot Sale! semana del: <%=@hot_sale.week.inicio.strftime("%d/%m/%Y")%> al <%=@hot_sale.week.fin.strftime("%d/%m/%Y")%></h3>
+
+
+ 
+      <br>
+      
+         
+        <% if client_signed_in? then %>
+        <a href='#' class="btn btn-danger btn-lg btn-block"> ¡Lo quiero</a> 
+     </div>
+        <%else%>
+          <a href='#' class="btn btn-outline-dark btn-lg btn-block"> Finalizar Hot Sale</a>
+           <a href=<%=edit_hot_sale_path(@hot_sale.week.id)%> class="btn btn-outline-danger btn-lg btn-block"> Modificar Hot Sale </a>
+
+        <%end%>
+
+    </div>
+    <br>
+      <div align="right">
+        <br>
+  <a href="/residences" class="btn btn-outline-dark">Volver al listado de Residencias</a> </div>
+
+
+  </div>
+</div>
+
+</div>

@@ -6,11 +6,7 @@ class AdministratorsController < ApplicationController
       @client=current_client
     end
  end
- def buscador
-if !(administrator_signed_in?) then
-  redirect_to "/"
-end
-     end
+
 
  
 #Version anterior a DEVISE -

@@ -44,7 +44,8 @@
                         <%= link_to 'Ver Subasta', auction_path(auction.id), class: 'btn btn-success btn-lg'%>
 
                        <%when "Hot sale"%>
-                        <%= link_to 'Ver Hot Sale', hot_sale_path, class: 'btn btn-danger btn-lg'%>
+                       <%hot_sale=HotSale.where(week_id: @week.id, residence_id: @week.residence.id).first%>
+                        <%= link_to 'Ver Hot Sale', hot_sale_path(hot_sale.id), class: 'btn btn-danger btn-lg'%>
                      
                        <% when "Disponible"%>  
                 

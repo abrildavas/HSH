@@ -61,17 +61,22 @@ class ResidencesController < ApplicationController
   #Metodos del buscador:
   #----------------------
   #Vista inicial del buscador
-  def buscador
-    if !(administrator_signed_in?) then
+ 
+ def buscador
+if (!(administrator_signed_in?) && (!(client_signed_in?))) then
   redirect_to "/"
 end
-  
-  end
+     end
 #El cliente ya presiono en buscar
   def searchClient
-    if !(administrator_signed_in?) then
+    if !(client_signed_in?) then
   redirect_to "/"
-end
+else
+  @busqueda=params[:nombre]
+  if !params[:criterio].blank?
+    @opcion=params[:criterio]
+  end
+  end
      
   end
 

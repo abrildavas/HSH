@@ -1,7 +1,7 @@
  <div class="card">
     <div class="shadow p-3 mb-5 bg-white rounded">
       <div class="card-body">
-        <h5 class="card-title">Crear Hot Sale </h5>
+        <h5 class="card-title">Modificar Hot Sale</h5>
 
         <%= form_for @hot_sale do |f| %>
 
@@ -15,7 +15,7 @@
                   <span class="input-group-text" id="basic-addon1">Ingresar precio:</span>
                   <%= f.hidden_field :week_id, value: @week.id %>
                   <%= f.hidden_field :residence_id, value: @week.residence.id %>
-                  <%= f.number_field :precio, required: true, label:'Precio $ ', class: 'form-control' , 'aria-label': 'Amount (to the nearest dollar)',min:'1'%>
+                  <%= f.number_field :precio, required: true, placeholder: '#{@hot_sale.precio}', label:'Precio $ ', class: 'form-control' , 'aria-label': 'Amount (to the nearest dollar)',min:'1'%>
    
        <span class="input-group-text"> $ </span>
         </div>
