@@ -28,7 +28,7 @@
   <div class="form-group row">
   	<div class="col-sm-10">
   		<%= f.label :precio%>
-  		<%= f.number_field :precio, required: true, label:'Precio $', placeholder:  "Ingrese el precio de la residencia",class: 'form-control'%>
+  		<%= f.number_field :precio, required: true, label:'Precio $', placeholder:  "Ingrese el precio de la residencia",class: 'form-control' ,min:'1'%>
   </div>
 </div>
 

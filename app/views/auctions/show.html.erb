@@ -11,50 +11,41 @@
       <div class="card">
 
 
-        <%= image_tag "#{@auction.week.residence.urlImag}" ,size: "500x500", class: "card-img-top" %>
+        <%= image_tag "#{@auction.week.residence.urlImag}" ,size: "450x450", class: "card-img-top" %>
     <div class="card-body">
-      <h3><class="card-title"></h3>
-         <h3><%="Precio $#{@auction.week.residence.precio}"%></h3>
-      <p class="card-text"><%=@auction.week.residence.descripcion%></p>
       <p class="card-text"><h4 class="text-muted"> <%=@auction.week.residence.pais%>, <%=@auction.week.residence.provincia%>, <%=@auction.week.residence.localidad%>, <%=@auction.week.residence.direccion%></h4></p>
     </div>
+    <br>
+     <h4 class="p-3 mb-2 bg-light text-dark">  Precio Base $: <%=@auction.precioBase%> </h4>
+    <div align="center">
 
-    <h3><class="card-text">   Subasta! -<%@auction.week.residence.nombre%> en la semana del :<%=@auction.week.inicio.strftime("%d/%m/%Y")%> al <%=@auction.week.fin.strftime("%d/%m/%Y")%></h3>
+      <h3><class="card-text">   Subasta! -<%=@auction.week.residence.nombre%> en la semana del: <%=@auction.week.inicio.strftime("%d/%m/%Y")%> al <%=@auction.week.fin.strftime("%d/%m/%Y")%></h3>
 
 
-      <h4 class="text-muted">  Precio Actual: <%=@auction.precioActual%> </h4>
-
-      <h4 class="text-muted"> Pujas: </h4>
-       <div class="card-group">
-      <%if !(@auction.bids.nil? )%>
+      <h4 class="text-success">Precio Actual $:<%=@auction.precioActual%> </h4>
+      <br>
+      
+         <div class="shadow p-3 mb-5 bg-white rounded">
+          <h4  class="text-muted" align= "left"> Pujas: </h4>
+      <%if !(@auction.bids.first.nil? )%>
       <% @auction.bids.each do |bid| %>
-          <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="shadow p-3 mb-5 bg-white rounded">
+        
             <h5 class="text-muted"> - Valor <%=bid.valor%>, fecha:<%=bid.fecha%> </h4>
-             </div>
              <br>
-
              <%end%>
-          </div>
-
         <%else%>
-         <div class="shadow p-3 mb-5 bg-white rounded" align="center">
-           <h4 class="text-muted"> No hay ninguna todavía </h4>
-          <div class="shadow p-3 mb-5 bg-white rounded">
+           <h5 class="text-muted"> No hay ninguna todavía </h5>
+          
 
       <%end%>
-        </div>
-        
-      <br>
-     
+        </div>     
         <a href='#' class="btn btn-success btn-lg btn-block"> ¡Ofertar!</a> 
      </div>
-
-    
-
+    </div>
+    <br>
       <div align="right">
   <a href="/residences" class="btn btn-outline-dark">Volver al listado de Residencias</a> </div>
-
-
 
 
   </div>

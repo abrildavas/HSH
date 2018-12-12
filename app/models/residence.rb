@@ -5,3 +5,6 @@ class Residence < ApplicationRecord
 	has_many :weeks
 	has_many :hot_sales, dependent: :destroy
 end
+
+
+ 
