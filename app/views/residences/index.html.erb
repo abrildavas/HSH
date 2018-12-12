@@ -1,8 +1,11 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<title> HSH- Pagina Principal</title>
-<%if client_signed_in? %>
-<%= render "layouts/headerLoginClient"%>
-<nav class="navbar navbar-dark bg-dark">
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+ <title> HSH- Pagina Principal</title>
+ <%if client_signed_in? %>
+ <%= render "layouts/headerLoginClient"%>
+ <nav class="navbar navbar-dark bg-dark">
   <p class="navbar-brand" href="#">Menú</p>
   <p class="text-light bg-dark" href="/residences">Propiedades <span class="sr-only">(current)</span></p> <!-- Aqui seccion actual -->
   <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -15,10 +18,10 @@
       <a class="nav-link" href="/residences">Propiedades <span class="sr-only">(current)</span></a><!-- Aqui seccion actual -->
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Buscar</a>
+      <a class="nav-link" href="/buscador">Buscar</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Ayuda</a>
+      <a class="nav-link" href="/ayuda">Ayuda</a>
     </li>
   </ul>
 </div>
@@ -26,20 +29,20 @@
 <br>
 <br>
 <div class="container">
-<div class="card-group">
-  <% Residence.all.each do |residence|%>
-  <div class="shadow p-3 mb-5 bg-white rounded">
-    <div class="card">
-      <%= image_tag residence.urlImag ,size: "500x500", class: "card-img-top" %>
-      <div class="card-body">
-        <h5><a href=<%=residence_path(residence)%> class="card-title"><%residence.nombre%></a></h5>
-        <p class="card-text"><%=residence.descripcion%></p>
-        <p class="card-text"><small class="text-muted"><%=residence.provincia%>, <%=residence.localidad%></small></p>
+  <div class="card-group">
+    <% Residence.all.each do |residence|%>
+    <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="card">
+        <%= image_tag residence.urlImag ,size: "500x500", class: "card-img-top" %>
+        <div class="card-body">
+          <h5><a href=<%=residence_path(residence)%> class="card-title"><%=residence.nombre%></a></h5>
+          <p class="card-text"><%=residence.descripcion%></p>
+          <p class="card-text"><small class="text-muted"><%=residence.provincia%>, <%=residence.localidad%></small></p>
+        </div>
       </div>
     </div>
+    <%end%>
   </div>
-  <%end%>
-</div>
 </div>
 <%else%>
 <%if administrator_signed_in?%>
@@ -60,7 +63,7 @@
         <a class="nav-link" href="/residences">Propiedades <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Buscar</a>
+        <a class="nav-link" href="/buscador">Buscar</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Reservas</a>
@@ -69,7 +72,7 @@
         <a class="nav-link" href="/clients">Clientes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Ayuda</a>
+        <a class="nav-link" href="/ayuda">Ayuda</a>
       </li>
     </ul>
   </div>
@@ -87,36 +90,6 @@
             <h5><a href=<%=residence_path(residence)%> class="card-title"><%=residence.nombre%></a></h5>
             <p class="card-text"><%=residence.descripcion%></p>
             <p class="card-text"><small class="text-muted"><%=residence.provincia%>, <%=residence.localidad%></small></p>
-            <%= link_to 'Modificar', edit_residence_path(residence), class: 'btn btn-primary'%>
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modificarEstado">Cambiar estado</button>
-            <%= link_to 'Eliminar', residence, method: :delete, class: 'btn btn-outline-danger', data:{ confirm: '¿Estás seguro que querés eliminar esta residencia?'}%>
-            <form action=<%= residence_estado_path(residence)%>>
-              <div class="modal fade" id="modificarEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Elegir semana</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <input type="hidden" name="residence_id" value=<%=residence.id%> />
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
-                        </div>
-                        <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" aria-describedby="basic-addon1" required>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="btn btn-primary">Modificar estado</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
           </div>
         </div>
       </div>
@@ -126,3 +99,17 @@
     <h4 class="card-title"> Para ingresar a ésta página, <%=link_to 'inicie sesión', new_client_session_path%></h4>
     <%end%>
     <%end%> 
+  </div>
+  <div class="p-3 mb-2 bg-dark text-white">
+   <center>
+    <<%= link_to "Contacto", "/Contacto"%>
+    <<%= link_to "Ayuda", "/ayuda"%>
+    <<%= link_to "Sobre Nosotros", "/about"%></center>
+    <br>
+    <CENTER> <p> - Cadena de Hoteles Home Switch Home - 2018 -</p></CENTER>  
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
