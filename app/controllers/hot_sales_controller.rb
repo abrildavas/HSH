@@ -33,7 +33,7 @@ class HotSalesController < ApplicationController
     @week=Week.find(params[:id])
        if !(Week.where(inicio: @week.inicio, estado: "Hot sale", residence_id: @week.residence.id).first.nil?)
               @hot_sale=HotSale.new
-  end
+        end
 end
 
 
@@ -62,11 +62,11 @@ end
     
   end 
   
-    def reservar_hotsale
+    def reservarHotsale
     @hotsale=HotSale.find(params[:id])
     @hotsale.week.estado="No Disponible"
     @reserva=Reservation.create(precio: @hotsale.precio, fecha: Date.today, fechaInicio: @hotsale.week.inicio, fechaFin: @hotsale.week.fin, client_id: params[:client_id] )
-    destroy(@HotSale.id)
+    destroy(@hotsale.id)
     
 end
 
