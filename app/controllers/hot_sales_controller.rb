@@ -41,6 +41,9 @@ end
     def destroy
      @hot_sale=HotSale.find(params[:id])
      @hot_sale.destroy
+     flash[:danger] = 'Se elimino el hot sale exitosamente'
+     redirect_back(fallback_location: '/residences')
+
   end
 
 
@@ -64,9 +67,11 @@ end
   
     def reservarHotsale
     @hotsale=HotSale.find(params[:id])
-    @hotsale.week.estado="No Disponible"
+    @hotsale.week.estado="No disponible"
     @reserva=Reservation.create(precio: @hotsale.precio, fecha: Date.today, fechaInicio: @hotsale.week.inicio, fechaFin: @hotsale.week.fin, client_id: params[:client_id] )
-    destroy(@hotsale.id)
+    @hotsale.destroy
+    flash[:danger] = 'Se Realizo la reserva exitosamente'
+      redirect_back(fallback_location: '/residences')
     
 end
 
