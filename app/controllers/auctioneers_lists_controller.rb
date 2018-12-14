@@ -10,10 +10,13 @@ class AuctioneersListsController < ApplicationController
   end
 
   def create
-    @auctioneersList=AuctioneersList.new(params[:auction_id],params[:client_id],params[:week_id],params[:residence_id])
-   
+    @auctioneersList=AuctioneersList.new
+    @auctioneersList.auction_id=params[:auction_id]
+    @auctioneersList.client_id=params[:client_id]
+    @auctioneersList.week_id=params[:week_id]
+    @auctioneersList.residence_id=params[:residence_id]
     if (@auctioneersList.save)
-    	redirect_to :back
+    	redirect_back fallback_location: auction_path(params[:auction_id])
 
       else
       	
