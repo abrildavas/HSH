@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <title> HSH- Pagina Principal</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+ <title> HSH- Pagina Principal</title>
 </head>
 <body>
 
-    <% if (client_signed_in? || administrator_signed_in? ) %>
-     <% if client_signed_in? then%>
+  <% if (client_signed_in? || administrator_signed_in? ) %>
+  <% if client_signed_in? then%>
 
-      <%= render "layouts/headerLoginClient"%>
-    
-     <% else %>
-    <%= render "layouts/headerLoginAdmin"%>
-      <% end%>
+  <%= render "layouts/headerLoginClient"%>
+
+  <% else %>
+  <%= render "layouts/headerLoginAdmin"%>
+  <% end%>
   <%else  %>
-   <%= render  "layouts/headerLogout"%>
-   <% end %>
+  <%= render  "layouts/headerLogout"%>
+  <% end %>
 
-<%if (administrator_signed_in?) then %>
+  <%if (administrator_signed_in?) then %>
   <nav class="navbar navbar-dark bg-dark">
 
-<h4 class="navbar-brand" >Menú</h4>
+    <h4 class="navbar-brand" >Menú</h4>
     <h4 class="text-light bg-dark" >Inicio <span class="sr-only">(current)</span></h4> <!-- Aqui seccion actual -->
 
 
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
- 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a> <!-- Aqui seccion actual -->
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/residences">Propiedades</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/buscador">Buscar</a>
-      </li>
-      <li class="nav-item">
-         <a class="nav-link" href="#">Reservas</a>
-      </li>
-      <li class="nav-item">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+
+          <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a> <!-- Aqui seccion actual -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/residences">Propiedades</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/buscador">Buscar</a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link" href="/reservations">Reservas</a>
+       </li>
+       <li class="nav-item">
          <a class="nav-link" href="/clients">Clientes</a>
-      </li>
-      <li class="nav-item">
+       </li>
+       <li class="nav-item">
          <a class="nav-link" href="/ayuda">Ayuda</a>
-      </li>
-    </ul>
-  </div>
-  </nav>
+       </li>
+     </ul>
+   </div>
+ </nav>
 
 
-<% elsif (client_signed_in?)
-  %>
+ <% elsif (client_signed_in?)
+ %>
 
-<nav class="navbar navbar-dark bg-dark">
+ <nav class="navbar navbar-dark bg-dark">
 
-<p class="navbar-brand" href="#">Menú</p>
-    <p class="text-light bg-dark" href="/">Inicio <span class="sr-only">(current)</span></p> <!-- Aqui seccion actual -->
+  <p class="navbar-brand" href="#">Menú</p>
+  <p class="text-light bg-dark" href="/">Inicio <span class="sr-only">(current)</span></p> <!-- Aqui seccion actual -->
 
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
- 
+
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
@@ -80,82 +80,80 @@
       </li>
 
       <li class="nav-item">
-         <a class="nav-link" href="/ayuda">Ayuda</a>
-      </li>
-    </ul>
-  </div>
-  </nav>
-  <br>
-       <br>
+       <a class="nav-link" href="/ayuda">Ayuda</a>
+     </li>
+   </ul>
+ </div>
+</nav>
+<br>
+<br>
 <%end%>
-  <% if flash[:notice] %>
-    <div class="alert alert-info"> <%= flash[:notice] %> </div>
-  <% end %>
-  <% if flash[:success] %>
-    <div class="alert alert-success"> <%= flash[:success] %> </div>
-  <% end %>
-    <% if flash[:danger] %>
-    <div class="alert alert-danger"> <%= flash[:danger] %> </div>
-  <% end %>
+<% if flash[:notice] %>
+<div class="alert alert-info"> <%= flash[:notice] %> </div>
+<% end %>
+<% if flash[:success] %>
+<div class="alert alert-success"> <%= flash[:success] %> </div>
+<% end %>
+<% if flash[:danger] %>
+<div class="alert alert-danger"> <%= flash[:danger] %> </div>
+<% end %>
 <br>
 <div class="container">
 
-       <div class="shadow p-3 mb-5 bg-white rounded">
-        <div class="card mb-3">
-          
-    
-  <div class="card-body">
-    <h5 class="card-title">HOT SALE</h5>
-  
-
-    <p class="card-text"><small class="text-muted">--</small></p>
+ <div class="shadow p-3 mb-5 bg-white rounded">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">!HOT SALE!</h5>
+      <% h=HotSale.find(rand(1..(HotSale.last.id)))%>
+      <h3><a href=<%=hot_sale_path(h)%> class="card-title"><%=Residence.find(h.residence_id).nombre%></a></h3>
+      <%= link_to hot_sale_path(h) do %>
+      <%= image_tag Residence.find(h.residence_id).urlImag ,size: "500x500", class: "card-img-top" %>
+      <% end %>
+      <p class="card-text"><%=Residence.find(h.residence_id).descripcion%></p>
+      <p class="card-text"><small class="text-muted"><%=Residence.find(h.residence_id).provincia%>, <%=Residence.find(h.residence_id).localidad%></small></p>
+    </div>
   </div>
-</div>
 </div>
 
 <div class="shadow p-3 mb-5 bg-white rounded">
   <div class="card">
-  <div class="card-body">
-    <h4 class="card-title"> Residencia </h4><% r=Residence.find(rand(1..(Residence.last.id)))%>
-    <h3><a href=<%=residence_path(r)%> class="card-title"><%=r.nombre%></a></h3>
+    <div class="card-body">
+      <h4 class="card-title"> Residencia </h4><% r=Residence.find(rand(1..(Residence.last.id)))%>
+      <h3><a href=<%=residence_path(r)%> class="card-title"><%=r.nombre%></a></h3>
 
-<%= link_to residence_path(r) do %>
-          <%= image_tag r.urlImag ,size: "500x500", class: "card-img-top" %>
-              <% end %>
+      <%= link_to residence_path(r) do %>
+      <%= image_tag r.urlImag ,size: "500x500", class: "card-img-top" %>
+      <% end %>
+      <p class="card-text"><%=r.descripcion%></p>
+      <p class="card-text"><small class="text-muted"><%=r.provincia%>, <%=r.localidad%></small></p>
+    </div>
 
-
-
-       
-    <p class="card-text"><%=r.descripcion%></p>
-    <p class="card-text"><small class="text-muted">-</small></p>
   </div>
-  
-</div>
 </div>
 
-  <% if (!(client_signed_in? || administrator_signed_in? ))%>
- <h5 class="text-secondary"> -Para ver más propiedades y poder reservar, inicie sesion...</h5>
-   <%elsif client_signed_in? %>
-    <h5 class="text-secondary"> -Para ver más propiedades y poder reservar, haga click en la sección propiedades de la parte superior.</h5>
-    <%end%>
+<% if (!(client_signed_in? || administrator_signed_in? ))%>
+<h5 class="text-secondary"> -Para ver más propiedades y poder reservar, inicie sesion...</h5>
+<%elsif client_signed_in? %>
+<h5 class="text-secondary"> -Para ver más propiedades y poder reservar, haga click en la sección propiedades de la parte superior.</h5>
+<%end%>
 
 
-       <br>
+<br>
 
 </div>
 
 <div class="p-3 mb-2 bg-dark text-white">
 
-   <center>
-    <<%= link_to "Contacto", "/Contacto"%>
-    <<%= link_to "Ayuda", "/ayuda"%>
-    <<%= link_to "Sobre Nosotros", "/about"%></center>
-    <br>
-    <CENTER> <p> - Cadena de Hoteles Home Switch Home - 2018 -</p></CENTER>
+ <center>
+  <<%= link_to "Contacto", "/Contacto"%>
+  <<%= link_to "Ayuda", "/ayuda"%>
+  <<%= link_to "Sobre Nosotros", "/about"%></center>
+  <br>
+  <CENTER> <p> - Cadena de Hoteles Home Switch Home - 2018 -</p></CENTER>
 
-    
-    
-    </div>
+
+
+</div>
 
 
 

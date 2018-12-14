@@ -28,6 +28,25 @@
 </nav>
 <br>
 <br>
+<div class="container">
+<h1>Ayuda</h1>  
+<div class="row">
+  <div class="col-4">
+    <div class="list-group" id="list-tab2" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-perfil-list" data-toggle="list" href="#list-perfil" role="tab" aria-controls="perfil">Como ver tu perfil</a>
+      <a class="list-group-item list-group-item-action" id="list-residencia-list" data-toggle="list" href="#list-residencia" role="tab" aria-controls="residencia">Como ver residencias</a>
+      <a class="list-group-item list-group-item-action" id="list-hotsale-list" data-toggle="list" href="#list-hotsale" role="tab" aria-controls="hotsale">Como ver hot sales</a>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent2">
+      <div class="tab-pane fade show active" id="list-perfil" role="tabpanel" aria-labelledby="list-perfil-list">Si quiere ver su perfil, entonces haga click en el boton ver perfil en la barra superior</div>
+      <div class="tab-pane fade" id="list-residencia" role="tabpanel" aria-labelledby="list-residencia-list">Para ver las residencias que hay en el sistema, puede ver en la pestaña de propiedades o buscar en el buscador para encontrar una propiedad. Ademas, usted puede ver la pagina principal para ver una propiedad diferente cada vez que entre al sitio!</div>
+      <div class="tab-pane fade" id="list-hotsale" role="tabpanel" aria-labelledby="list-hotsale-list">Para ver hot sales, puede ver una aleatoria en la pagina principal o puede usar el buscador para encontrar una hot sale</div>
+    </div>
+  </div>
+</div>
+</div>
 <%else%>
 <%if (administrator_signed_in?) then%>
 <nav class="navbar navbar-dark bg-dark">
@@ -51,7 +70,7 @@
         <a class="nav-link" href="/buscador">Buscar</a>
       </li>
       <li class="nav-item">
-         <a class="nav-link" href="#">Reservas</a>
+         <a class="nav-link" href="/reservations">Reservas</a>
       </li>
       <li class="nav-item">
          <a class="nav-link" href="/clients">Clientes</a>
@@ -64,26 +83,26 @@
   </nav>
   <br>
   <br>
-<%end%>
-<%end%>
+  <h1>Ayuda</h1> 
+<%else%>
 <div class="container">
 <h1>Ayuda</h1>  
 <div class="row">
   <div class="col-4">
     <div class="list-group" id="list-tab" role="tablist">
-      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Tip 1</a>
-      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Tip 2</a>
-      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Tip 3</a>
-      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Tip 4</a>
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Como registrarse en el sitio</a>
+      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Que datos se le pediran para registrarse</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Como iniciar sesion</a>
     </div>
   </div>
   <div class="col-8">
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">Aca iria el primer tip para el cliente</div>
-      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">Aca iria el segundo tip para el cliente</div>
-      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Aca iria el tercer tip para el cliente</div>
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Aca iria el cuarto tip para el cliente</div>
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">Para registrarse en el sitio, haga click en el boton registrarse en la pagina principal</div>
+      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">Se le pedira su nombre, apellido, fecha de nacimiento y su dni, ademas de la marca de su tarjeta, el numero de la misma y la fecha de vencimiento. Ademas, tendra que insertar un email y una contraseña para poder entrar al sitio </div>
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Para iniciar sesion, haga click en el boton iniciar sesion del la pagina principal</div>
     </div>
   </div>
 </div>
 </div>
+<%end%>
+<%end%>

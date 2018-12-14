@@ -253,11 +253,12 @@
 
                                 <%else%>
 
+
                                 <!--<SI EL CLIENTE YA ESTÁ EN LISTA DE SUBASTADORES PARA ESTA PROPIEDAD:>-->
 
                                 <%= link_to 'Ver Subasta', auction_path(auction.id), class: 'btn btn-success'%>
                                 <%end%>
-                       
+
 
                              <%when "Hot sale"%>
                                  <%= link_to 'Ver Hot Sale', hot_sale_path, class: 'btn btn-danger'%>
