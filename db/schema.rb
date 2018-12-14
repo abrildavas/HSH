@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181211214600) do
+ActiveRecord::Schema.define(version: 20181214152526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,10 +31,20 @@ ActiveRecord::Schema.define(version: 20181211214600) do
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
 
+  create_table "auctioneers", force: :cascade do |t|
+    t.integer "auction_id"
+    t.integer "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "auctioneers_lists", force: :cascade do |t|
     t.integer "auction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "client_id"
+    t.integer "week_id"
+    t.integer "residence_id"
   end
 
   create_table "auctions", force: :cascade do |t|
@@ -43,6 +53,7 @@ ActiveRecord::Schema.define(version: 20181211214600) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "week_id"
+    t.integer "lista_id"
   end
 
   create_table "bids", force: :cascade do |t|
@@ -84,6 +95,22 @@ ActiveRecord::Schema.define(version: 20181211214600) do
     t.integer "week_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "lista", force: :cascade do |t|
+    t.integer "auction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "clients_id", default: [], array: true
+  end
+
+  create_table "listclients", force: :cascade do |t|
+    t.integer "auctionId"
+    t.integer "clientId"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "residenceId"
+    t.integer "weekId"
   end
 
   create_table "reservations", force: :cascade do |t|

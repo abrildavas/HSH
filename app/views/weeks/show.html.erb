@@ -179,8 +179,16 @@
                       <p><%="En la semana del " + @week.inicio.strftime("%d/%m/%Y") + " la propiedad está en " + @week.estado%></p>
                            <%case @week.estado %>
                            <% when "Subasta" %>
+
                                <!--<SI NO ES UN SUBASTADOR DE ESTA PROPIEDAD:>-->
+                                <%if (!ApplicationRecord::AuctioneersList.esSubastador(current_client.id,@week.id,@residence.id))%>
+
+
                                 <%= link_to 'ingresar a la lista de subastadores', week_path, class: 'btn btn-outline-warning btn-lg'%>
+
+                                <%else%>
+
+                                <%if %>
                                 <!--<SI EL CLIENTE YA ESTÁ EN LISTA DE SUBASTADORES PARA ESTA PROPIEDAD:>-->
                                 <%auction=Auction.where(week_id: @week.id).first%>
                                 <%= link_to 'Ver Subasta', auction_path(auction.id), class: 'btn btn-success'%>
