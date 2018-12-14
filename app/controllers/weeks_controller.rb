@@ -129,6 +129,24 @@ end
 end
 
 
+  def reservarPremium
+    @week=Week.find(params[:format])
+    @clienteGanador=Client.find(current_client.id)
+    @residencia=Residence.find(@week.residence_id)
+    if (@clienteGanador.creditos>0)
+       @clienteGanador.creditos=@clienteGanador.creditos - 1
+       @reserva=Reservation.create(precio: @residencia.precio, fecha: Date.today, fechaInicio: @week.inicio, fechaFin: @week.fin, client_id: @clienteGanador.id, residence_id: @week.residence_id)
+       @week.estado = "Reservado"
+       @reserva.save
+       @clienteGanador.save
+       @week.save
+       flash[:success] = "Usted se ha adjucado la propiedad con exito"
+       redirect_to root_path
+    else
+       flash[:danger] = "Usted no tiene los suficientes creditos como para reservar esta propiedad"
+       redirect_back fallback_location: root_path
+    end
+  end 
 
 
 

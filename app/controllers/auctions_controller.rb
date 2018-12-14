@@ -57,10 +57,12 @@ class AuctionsController < ApplicationController
     #Primer Mejor Postor Gana la subasta
     #Se Crea la reserva:
     
-    @reserva=Reservation.create(precio: @subasta.precioActual, fecha: Date.today, fechaInicio: @subasta.week.fechaInicio, fechaFin: @subasta.week.fechaFin, client_id: pujas.first.client.id)
+    @reserva=Reservation.create(precio: @subasta.precioActual, fecha: Date.today, fechaInicio: @subasta.week.inicio, fechaFin: @subasta.week.fin, client_id: pujas.first.client.id)
     @subasta.week.estado="No Disponible"
     @subasta.week.save
     @clienteGanador=Client.find(pujas.first.client.id)
+       @clienteGanador.creditos=@clienteGanador.creditos-1
+      @clienteGanador.save
 
   else
   
@@ -81,10 +83,12 @@ class AuctionsController < ApplicationController
       @subasta.week.estado="Disponible"
       @subasta.week.save
   else
-    @reserva=Reservation.create(precio: pujas[iganador].valor, fecha: Date.today, fechaInicio: @subasta.week.fechaInicio, fechaFin: @subasta.week.fechaFin, client_id: pujas[iganador].client.id)
+    @reserva=Reservation.create(precio: pujas[iganador].valor, fecha: Date.today, fechaInicio: @subasta.week.inicio, fechaFin: @subasta.week.fin, client_id: pujas[iganador].client.id)
    @subasta.week.estado="No Disponible"
       @subasta.week.save
       @clienteGanador=Client.find(pujas[iganador].client.id)
+      @clienteGanador.creditos=@clienteGanador.creditos-1
+      @clienteGanador.save
   end
 end
 
