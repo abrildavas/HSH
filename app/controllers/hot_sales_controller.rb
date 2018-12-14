@@ -12,27 +12,31 @@ class HotSalesController < ApplicationController
 
   def create
 	@hot_sale=HotSale.new(params.require(:hot_sale).permit(:precio ,:residence_id,:week_id))
-  if @hot_sale.save 
-      flash[:success] = 'El Hot sale se creó exitosamente. Para verlo, ingrese aquí en el calendario la fecha de inicio de la semana a la cual acaba de crearle el hot sale. '
 
+ 
+    if (@hot_sale.save )
+      flash[:success] = 'El Hot sale se creó exitosamente. Para verlo, ingrese aquí en el calendario la fecha de inicio de la semana a la cual acaba de crearle el hot sale. '
        redirect_to week_dates_path(Week.find(@hot_sale.week.residence_id))
 
-      else
+    else
         flash[:danger] = 'El Hot sale no pudo crearse.'
         render :new
-      end
-
+     end
+ 
   end
 
 
 
 
   def new
-  	@hot_sale=HotSale.new
+  	
     @week=Week.find(params[:id])
-  
-
+       if !(Week.where(inicio: @week.inicio, estado: "Hot sale", residence_id: @week.residence.id).first.nil?)
+              @hot_sale=HotSale.new
   end
+end
+
+
 
     def destroy
      @hot_sale=HotSale.find(params[:id])
