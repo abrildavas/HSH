@@ -98,6 +98,7 @@ get '/reservarHotsale/:id', to: 'hot_sales#reservarHotsale',as: "reservar_hotsal
 
 get '/reservarPremium', to:'weeks#reservarPremium', as: "reservar_premium"
 
+get '/ingresarClienteToAuction',to: 'auctioneers_lists#create',as: "ingresar_cliente_to_auction"
   
 
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

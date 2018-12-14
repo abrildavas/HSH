@@ -179,19 +179,84 @@
                       <p><%="En la semana del " + @week.inicio.strftime("%d/%m/%Y") + " la propiedad está en " + @week.estado%></p>
                            <%case @week.estado %>
                            <% when "Subasta" %>
+                           <%auction=Auction.where(week_id: @week.id).first%>
 
                                <!--<SI NO ES UN SUBASTADOR DE ESTA PROPIEDAD:>-->
-                                <%if (!ApplicationRecord::AuctioneersList.esSubastador(current_client.id,@week.id,@residence.id))%>
+                               
+                                <%if (AuctioneersList.where(client_id: current_client.id,week_id: @week.id, residence_id: @residence.id).first.nil?) then%>
+
+                                 <button type="button" class="btn btn-outline-warning btn-lg" data-toggle="modal" data-target="#ListaSubastadores"> Ingresar a la Lista de Subastadores</button>
 
 
-                                <%= link_to 'ingresar a la lista de subastadores', week_path, class: 'btn btn-outline-warning btn-lg'%>
+
+
+
+                                <div class="modal fade" id="ListaSubastadores" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Entrar a Lista de Subastadores </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+       
+        </button>
+      </div>
+       <form action='/ingresarClienteToAuction'>
+
+      <div class="modal-body">
+
+<input type="hidden" name="client_id" value=<%=auction.id%> />
+  <input type="hidden" name="client_id" value=<%=current_client.id%> />
+        <input type="hidden" name="week_id" value=<%=@week.id%> />
+          <input type="hidden" name="residence_id" value=<%=@residence.id%> />
+
+        Semana del <%=@week.inicio.strftime("%d/%m/%Y")%> 
+        <br>
+           <p>¿Está seguro de ingresar a la lista?</p> <br>       
+      </div>
+
+            <div class="card">
+
+          <div class="row">
+            <div class="col-auto">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                   <p class="font-italic">Nota: Puede realizar pujas cuando se abra la subasta.</p>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+       
+            </div>
+          </div>
+       
+      </div>
+           
+      <div class="modal-footer">
+                       
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+         <button type="submit" class="btn btn-warning">Aceptar</button>
+      </div>
+    </div>
+     </form>
+   </div>
+ </div>
+
+
+
+
+
+
 
                                 <%else%>
 
-                                <%if %>
                                 <!--<SI EL CLIENTE YA ESTÁ EN LISTA DE SUBASTADORES PARA ESTA PROPIEDAD:>-->
-                                <%auction=Auction.where(week_id: @week.id).first%>
+
                                 <%= link_to 'Ver Subasta', auction_path(auction.id), class: 'btn btn-success'%>
+                                <%end%>
                        
 
                              <%when "Hot sale"%>
@@ -205,8 +270,14 @@
                                   <%end%>
 
                                     <!--<Si no está en lista de subastadores:>-->
-                                  <%= link_to 'ingresar a la lista de subastadores', week_path, class: 'btn btn-outline-warning btn-lg'%>
-                                    <!--<TODAVÍA NO PUEDE VER LA SUBASTA HASTA QUE NO SE LE HAYA CAMBIADO EL ESTADO A LA SEMANA A 'SUBASTA':>-->
+                                      <%if (AuctioneersList.where(client_id: current_client.id,week_id: @week.id, residence_id: @residence.id).first.nil?) then%>
+
+   <a href="#" class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Ver Subasta</a>
+   <p class="font-italic"> Para ver la subasta debe esperar a que ésta se active </p>
+   <%end%>
+                                
+
+                                  
 
                      
                              <%end%>

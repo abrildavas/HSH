@@ -61,6 +61,8 @@ class AuctionsController < ApplicationController
     @subasta.week.estado="No Disponible"
     @subasta.week.save
     @clienteGanador=Client.find(pujas.first.client.id)
+       @clienteGanador.creditos=@clienteGanador.creditos-1
+      @clienteGanador.save
 
   else
   
@@ -85,6 +87,8 @@ class AuctionsController < ApplicationController
    @subasta.week.estado="No Disponible"
       @subasta.week.save
       @clienteGanador=Client.find(pujas[iganador].client.id)
+      @clienteGanador.creditos=@clienteGanador.creditos-1
+      @clienteGanador.save
   end
 end
 
