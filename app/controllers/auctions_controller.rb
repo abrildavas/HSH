@@ -16,12 +16,7 @@ class AuctionsController < ApplicationController
     if @auction.save 
       flash[:success] = 'La subasta se creó exitosamente. Para ver dicha subasta, ingrese la fecha de inicio de la semana a la cual acaba de crearle la subasta. '
 
-       AuctioneerList.all.each do |clientInList|
-          if ((clientInList.week_id==@auction.week_id) and (Week.find(clientInList.week_id).residence_id)== (Week.find(@auction.week_id).residence_id)) then
-           clientInList.auction_id=@auction.id
-           clientInList.save
-         end
-       end
+       
        redirect_to week_dates_path(Week.find(@auction.week_id).residence_id)
 
       else
