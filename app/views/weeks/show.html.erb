@@ -200,7 +200,8 @@
                      
                             <% when "Disponible"%>  
                                   <%if current_client.estado=="premium"%>
-                                       <%= link_to 'Adjudicarme esta residencia', reservar_premium_path, class: 'btn btn-outline-warning btn-lg'%>
+                                       <%= link_to 'Adjudicarme esta residencia', reservar_premium_path(@week.id), class: 'btn btn-outline-warning btn-lg', data: {confirm: "¿Está seguro que desea adjudicarse esta residencia?"}%>
+
                                   <%end%>
 
                                     <!--<Si no está en lista de subastadores:>-->
