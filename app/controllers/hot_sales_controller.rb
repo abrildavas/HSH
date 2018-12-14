@@ -41,20 +41,19 @@ class HotSalesController < ApplicationController
 
 
 def edit
-  @week=Week.find(params[:id])
-  @hot_sale=HotSale.where(week_id: @week.id, residence_id: @week.residence.id).first
-
+     @hot_sale=HotSale.find(params[:id])
 end
 
  def update
-  @week=Week.find(params[:id])
-  @hot_sale=HotSale.where(week_id: @week.id, residence_id: @week.residence.id).first
-
+  @hot_sale=HotSale.find(params[:id])
    
     if @hot_sale.update(params.require(:hot_sale).permit(:precio, :residence_id, :week_id))
-      redirect_to hot_sale_path(@hot_sale), notice:"Se actualizó la residencia #{@residence.nombre} correctamente"
+      flash[:success] = "Se actualizó el precio del Hot Sale de la residencia #{@hot_sale.residence.nombre} correctamente"
+      redirect_to hot_sale_path(@hot_sale)
+       
     else
-    redirect_to "/residences",  notice:"Error al actualizar el hot sale de #{@hot_sale.week.residence.nombre}"
+    redirect_to "/residences",  notice:
+    flash[:danger] = "Error al actualizar el hot sale de #{@hot_sale.week.residence.nombre}"
     end
     
   end 

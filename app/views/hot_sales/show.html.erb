@@ -19,7 +19,7 @@
      <h4 class="p-3 mb-2 bg-light text-dark">  Precio normal $: <%=@hot_sale.residence.precio%> </h4>
 
     <div align="center">
-      <h4 class="text-danger">Precio Actual $:<%=@hot_sale.precio%> </h4>
+      <h3 class="text-danger">Precio Actual $:<%=@hot_sale.precio%> </h3>
 
       <h3><class="card-text"> -<%=@hot_sale.residence.nombre%> en Hot Sale! semana del: <%=@hot_sale.week.inicio.strftime("%d/%m/%Y")%> al <%=@hot_sale.week.fin.strftime("%d/%m/%Y")%></h3>
 
@@ -33,9 +33,11 @@
                  <%=link_to '¡Lo Quiero!',reservar_hotsale(hotsale.id), class: "btn btn-danger btn-lg btn-block", data: {confirm: "¿Está seguro que desea realizar la reserva?"}%>
      </div>
         <%else%>
-          <a href='#' class="btn btn-outline-dark btn-lg btn-block"> Finalizar Hot Sale</a>
-           <a href=<%=edit_hot_sale_path(@hot_sale.week.id)%> class="btn btn-outline-danger btn-lg btn-block"> Modificar Hot Sale </a>
-
+              <a href=<%=edit_hot_sale_path(@hot_sale.id)%> class="btn btn-outline-dark btn-lg btn-block"> Modificar Hot Sale </a>
+              <div align="left">
+              <a href='#' class="btn btn-danger btn-lg btn-block"> Finalizar Hot Sale</a>
+            </div>
+     
         <%end%>
 
     </div>
