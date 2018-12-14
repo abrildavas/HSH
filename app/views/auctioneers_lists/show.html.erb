@@ -1,2 +1,20 @@
-<h1>AuctioneersLists#show</h1>
-<p>Find me in app/views/auctioneers_lists/show.html.erb</p>
+<h2>Lista de Subastadores para <%=residence.nombre%>:</h2>
+<hr>
+<div class="container">
+<%alguien=false%>
+	 <% AuctioneersList.all.each do |clientInList|%>
+<%if ((clientInList.week_id==@week.id) and (Week.find(clientInList.week_id).residence_id)== (Week.find(@week_id).residence_id)) then %>
+			<%alguien=true%>
+       
+               <%cliente=Client.find(clientInList.client_id)%>
+               <p> <%=cliente.nombre%>, <%=client.apellido%></p>
+               <hr>               
+                  <%end%>
+
+<%end%>
+<%if alguien then%>
+<p> No hay clientes en esta lista</p>
+<%end%>
+
+<%=link_to 'Volver', :back, class:"btn btn-secondary"%>
+</div>

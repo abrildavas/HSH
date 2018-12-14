@@ -43,6 +43,8 @@
                        <%auction=Auction.where(week_id: @week.id).first%>
                         <%= link_to 'Ver Subasta', auction_path(auction.id), class: 'btn btn-success btn-lg'%>
                         <%=link_to 'Terminar Subasta',finish_auction_path(auction.id), class: "btn btn-danger", data: {confirm: "¿Está seguro que desea cerar la subasta?"}%>
+                         <%= link_to 'Ver lista de subastadores', show_lista_path(@week.id), class: 'btn btn-outline-warning btn-lg'%>
+
 
                        <%when "Hot sale"%>
                        <%hot_sale=HotSale.where(week_id: @week.id, residence_id: @week.residence.id).first%>
@@ -50,7 +52,7 @@
                      
                        <% when "Disponible"%>  
                 
-                        <%= link_to 'Ver lista de subastadores', week_path, class: 'btn btn-outline-warning btn-lg'%>
+                        <%= link_to 'Ver lista de subastadores', show_lista_path(@week.id), class: 'btn btn-outline-warning btn-lg'%>
 
                      
               				 <%end%>

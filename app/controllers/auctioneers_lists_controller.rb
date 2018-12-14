@@ -1,6 +1,8 @@
 class AuctioneersListsController < ApplicationController
   def show
-  	@list=AuctioneersList.find(params[:id])
+  	@week=Week.find(params[:week_id])
+    @residence=Residence.find(@week.residence)
+  	
 
   end
 

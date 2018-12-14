@@ -17,6 +17,10 @@ devise_for :clients, path: "clients", controllers: {sessions: "clients/sessions"
 
 root 'administrators#home'
 
+
+
+get 'showLista/:id', to:'auctioneers_lists#show',as: "show_lista" 
+
 get '/clients', to: 'clients#index', as: "clients"
 post '/clients', to: 'clients#create'
 get '/clients/new', to: 'clients#new', as: "new_client"
