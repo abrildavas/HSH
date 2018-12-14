@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20181214160531) do
   create_table "clients", force: :cascade do |t|
     t.string "nombre"
     t.string "apellido"
-    t.integer "dni"
+    t.bigint "dni"
     t.date "fechaNac"
     t.string "mail"
     t.string "password"

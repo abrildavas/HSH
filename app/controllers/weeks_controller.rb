@@ -50,27 +50,85 @@ end
 
   def modificarEstado 
     @week=Week.find(params[:week_id])
-    @week.estado = params[:estado]
+    
 
-    if  (@week.save) && (@week.estado=="Disponible" || @week.estado=="No disponible")
-      flash[:success] = 'El estado de la residencia fue cambiado exitosamente. Para ver la semana nuevamente, vuelva a ingresar su fecha de inicio. '
+
+    if  ((@week.estado== "Reservada")  && ((params[:estado]== "Hot sale")|| (params[:estado]=="Subasta")))
+      flash[:danger] = 'La residencia ya se encuentra reservada. '
     else
-      if (!(@week.estado=="Subasta") && (!@week.estado=="Hot sale") )
-         flash[:danger] = 'El estado de la residencia no fue posible cambiarlo.'
-      end
 
-      if (@week.save) && (@week.estado=="Subasta")
-      
-        redirect_to new_auction_path(@week.id) and return 
-        elsif (@week.save)&& (@week.estado=="Hot sale")
-           redirect_to new_hot_sale_path(@week.id) and return
-        end       
-    end
-    redirect_to week_dates_path(@week.residence_id)
+      if (@week.estado=="Hot sale") && (params[:estado]=="Hot sale")
+           flash[:danger] = "Ya existe un Hot sale para esa semana de esta residencia"
+       
+      else
+        if (@week.estado=="Subasta") && (params[:estado]=="Subasta")
+           flash[:danger] = "Ya existe un Subasta para esa semana de esta residencia"
+
+        else 
+
+
+
+           @week.estado = params[:estado]
+        if  (@week.estado=="Disponible" || @week.estado=="No disponible")  &&  (@week.save)
+           flash[:success] = 'El estado de la residencia fue cambiado exitosamente. Para ver la semana nuevamente, vuelva a ingresar su fecha de inicio. '
+       else
+              if (!(@week.estado=="Subasta") && (!@week.estado=="Hot sale") )
+                flash[:danger] = 'El estado de la residencia no fue posible cambiarlo.'
+              end
+       end
+
+
+       if (@week.estado=="Subasta") 
+            if (@week.inicio>=Date.today + 6.months) && (@week.inicio <=Date.today + 8.months)
+                 if (@week.save)
+                 redirect_to new_auction_path(@week.id) and return 
+                 else 
+                 flash[:danger] = 'No fue posible crear la subasta.'
+                 end
+
+            else
+              flash[:danger] = 'Una subasta solo puede ser creada desde 6 a 8 meses a partir de la fecha actual'
+            end 
+      else 
+             if (@week.estado=="Hot sale") 
+                  if (@week.inicio<=Date.today + 6.months) 
+
+                     if (@week.save)
+                         redirect_to new_hot_sale_path(@week.id) and return
+                     else
+                      flash[:danger] = 'No fue posible crear el Hot sale.'
+                     end
+                  else 
+
+                  flash[:danger] = 'Un Hot Sale solo puede ser creado desde la fecha actual hasta 6 meses.'
+
+
+                 end 
+
+
+            elsif (@week.estado=="Reservada")
+                 if (@week.save)
+                  new_reservation_path and return
+                  else
+                  flash[:danger] = 'No fue posible crear la reserva.'
+
+                  end 
+            end
+
+        end
+
+        end 
+
+
+
+
+      end 
+     
+
   end
 
-
-
+    redirect_to week_dates_path(@week.residence_id)
+end
 
 
   def reservarPremium
@@ -91,6 +149,7 @@ end
        redirect_back fallback_location: root_path
     end
   end 
+
 
 
 

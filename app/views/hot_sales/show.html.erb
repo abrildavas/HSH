@@ -30,12 +30,12 @@
          
         <% if client_signed_in? then %>
 
-                 <%=link_to '¡Lo Quiero!',reservar_hotsale(hotsale.id), class: "btn btn-danger btn-lg btn-block", data: {confirm: "¿Está seguro que desea realizar la reserva?"}%>
+                 <%=link_to '¡Lo Quiero!',reservar_hotsale_path(@hot_sale.id), class: "btn btn-danger btn-lg btn-block", data: {confirm: "¿Está seguro que desea realizar la reserva?"}%>
      </div>
         <%else%>
               <a href=<%=edit_hot_sale_path(@hot_sale.id)%> class="btn btn-outline-dark btn-lg btn-block"> Modificar Hot Sale </a>
               <div align="left">
-              <a href='#' class="btn btn-danger btn-lg btn-block"> Finalizar Hot Sale</a>
+              <a href= <%=reservar_hotsale_path(@hot_sale.id)%> class="btn btn-danger btn-lg btn-block"> Eliminar Hot Sale</a>
             </div>
      
         <%end%>

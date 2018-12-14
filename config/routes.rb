@@ -97,8 +97,9 @@ get '/hot_sales/:id', to: 'hot_sales#show', as: "hot_sale"
 patch '/hot_sales/:id', to: 'hot_sales#update'
 put '/hot_sales/:id', to: 'hot_sales#update'
 delete '/hot_sales/:id', to: 'hot_sales#destroy'
-get '/eliminar/:id', to: 'hot_sales#elminiar', as:"eliminar_hotsale"
+get '/eliminar/:id', to: 'hot_sales#destroy', as:"eliminar_hotsale"
 get '/reservarHotsale/:id', to: 'hot_sales#reservarHotsale',as: "reservar_hotsale"
+
 
 get '/reservarPremium', to:'weeks#reservarPremium', as: "reservar_premium"
 
