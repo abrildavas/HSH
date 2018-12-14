@@ -78,8 +78,8 @@ end
     @residencia=Residence.find(@week.residence_id)
     if (@clienteGanador.creditos>0)
        @clienteGanador.creditos=@clienteGanador.creditos - 1
-       @reserva=Reservation.create(precio: @residencia.precio, fecha: Date.today, fechaInicio: @week.inicio, fechaFin: @week.fin, client_id: @clienteGanador.id)
-       @week.estado = "reservado"
+       @reserva=Reservation.create(precio: @residencia.precio, fecha: Date.today, fechaInicio: @week.inicio, fechaFin: @week.fin, client_id: @clienteGanador.id, residence_id: @week.residence_id)
+       @week.estado = "Reservado"
        @reserva.save
        @clienteGanador.save
        @week.save
